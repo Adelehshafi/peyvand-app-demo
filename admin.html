@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>پیوند | پنل مدیریت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f3f4fa;--surface:#fff;--surface-2:#f6f7fc;--text:#14162b;--muted:#6b7090;--faint:#9a9fbb;--line:#e7e9f2;--grid:#eef0f6;
+  --p:#6352f5;--p-soft:rgba(99,82,245,.1);--s1:#5b50e6;--s2:#0f9e8e;--grad:linear-gradient(135deg,#7b5cff,#4f74ff 52%,#14b8a6);
+  --ok:#119a4e;--ok-soft:rgba(17,154,78,.1);--warn:#c77700;--warn-soft:rgba(232,147,12,.13);--bad:#d93d42;--bad-soft:rgba(229,72,77,.1);
+  --sh:0 4px 20px rgba(28,32,88,.05)}
+body{font-family:"Vazirmatn",Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+button,input,select{font-family:inherit}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.sm{width:17px;height:17px}.ic.xs{width:13px;height:13px;stroke-width:2.4}
+.shell{display:flex;min-height:100vh}
+.side{width:256px;flex:none;background:#10122a;color:#c9cce6;padding:22px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;font-size:21px;padding:0 8px 22px}
+.brand small{display:block;font-size:11px;font-weight:500;color:#8c90b4}
+.nav{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:13px;cursor:pointer;font-weight:600;font-size:14px;border:0;background:none;color:inherit;text-align:right;width:100%;transition:background-color .2s,color .2s}
+.nav:hover{background:rgba(255,255,255,.05);color:#fff}
+.nav.on{background:linear-gradient(135deg,rgba(123,92,255,.9),rgba(79,116,255,.9));color:#fff;box-shadow:0 8px 20px rgba(79,116,255,.3)}
+.nav .cnt{margin-right:auto;background:#e5484d;color:#fff;font-size:11px;font-weight:800;padding:1px 8px;border-radius:999px}
+.side-f{margin-top:auto;font-size:12px;color:#8c90b4;line-height:1.9;padding:14px;border-radius:14px;background:rgba(255,255,255,.04)}
+.side-f a{color:#b9b2ff;text-decoration:none;font-weight:700}
+.main{flex:1;min-width:0;padding:24px 28px 40px}
+.head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.head h1{font-size:24px;font-weight:900}
+.head small{color:var(--muted);font-size:13px}
+.search{margin-right:auto;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px;width:280px;color:var(--muted)}
+.search input{border:0;outline:0;background:none;padding:11px 0;flex:1;font-size:13.5px;color:var(--text)}
+.me{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);padding:6px 6px 6px 14px;border-radius:14px}
+.me i{width:34px;height:34px;border-radius:11px;background:var(--grad);display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800}
+.me b{font-size:13px;display:block}.me small{font-size:11px}
+.page{display:none}.page.on{display:block;animation:rise .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:var(--sh)}
+.card h3{font-size:15.5px;font-weight:800}
+.card .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpis>*,.grid2>*,.sets>*{min-width:0}
+.kpi .l{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;font-weight:600}
+.kpi .l span{width:36px;height:36px;border-radius:12px;display:grid;place-items:center}
+.kpi .v{font-size:28px;font-weight:900;margin:14px 0 6px;letter-spacing:-.4px}
+.kpi .v small{font-size:13px;color:var(--muted);font-weight:600}
+.delta{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px}
+.delta.up{background:var(--ok-soft);color:var(--ok)}.delta.down{background:var(--bad-soft);color:var(--bad)}
+.delta+span{color:var(--muted);font-size:12px;margin-right:6px}
+.grid2{display:grid;grid-template-columns:1.7fr 1fr;gap:16px;margin-top:16px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;overflow:visible}
+.tip{position:absolute;pointer-events:none;background:#14162b;color:#fff;border-radius:12px;padding:8px 12px;font-size:12px;line-height:1.7;white-space:nowrap;transform:translate(-50%,-115%);opacity:0;transition:opacity .15s;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.tip b{font-size:14px}
+.tip.on{opacity:1}
+.range-tabs{display:flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:3px}
+.range-tabs button{white-space:nowrap;border:0;background:none;padding:6px 12px;border-radius:9px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer}
+.range-tabs button.on{background:var(--surface);color:var(--text);box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.mix{display:flex;gap:2px;height:16px;margin:30px 0 10px}
+.mix div{border-radius:4px;position:relative}
+.mix div span{position:absolute;bottom:22px;right:0;font-size:12.5px;font-weight:800;color:var(--text);white-space:nowrap}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-left:6px;vertical-align:-1px}
+.facts{display:grid;gap:0}
+.fact{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+.fact b{color:var(--text);font-size:14px}
+.tbl-wrap{overflow-x:auto;margin:0 -20px -20px;padding:0 20px 8px}
+table{width:100%;border-collapse:collapse;min-width:760px}
+table.sm{min-width:520px}
+th{text-align:right;font-size:12px;font-weight:700;color:var(--muted);padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px 10px;border-bottom:1px solid var(--grid);font-size:13.5px;white-space:nowrap;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tbody tr{transition:background-color .15s}
+tbody tr:hover{background:var(--surface-2)}
+.who{display:flex;align-items:center;gap:10px}
+.av{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.who b{display:block;font-size:13.5px}.who small{color:var(--muted);font-size:11.5px}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px}
+.st .ic{width:12px;height:12px;stroke-width:2.4}
+.st-run{background:var(--p-soft);color:var(--p)}.st-done{background:var(--ok-soft);color:var(--ok)}.st-q{background:var(--warn-soft);color:var(--warn)}.st-pause,.st-ban{background:var(--bad-soft);color:var(--bad)}.st-act{background:var(--ok-soft);color:var(--ok)}
+.prog{display:flex;align-items:center;gap:8px;min-width:150px}
+.prog .b{flex:1;height:6px;border-radius:9px;background:var(--grid);overflow:hidden}
+.prog .b i{display:block;height:100%;border-radius:9px;background:var(--s1)}
+.prog small{font-size:11.5px;color:var(--muted);width:34px}
+.btn{border:0;font-weight:700;font-size:13px;border-radius:11px;padding:8px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:transform .15s,background-color .2s;white-space:nowrap}
+.btn:active{transform:scale(.96)}
+.btn-p{background:var(--grad);color:#fff;box-shadow:0 6px 16px rgba(84,96,255,.25)}
+.btn-s{background:var(--p-soft);color:var(--p)}
+.btn-g{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.btn-d{background:var(--bad-soft);color:var(--bad)}
+.btn-ok{background:var(--ok-soft);color:var(--ok)}
+.btn.lg{padding:12px 20px;font-size:14px;border-radius:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer}
+.chip.on{background:var(--text);color:#fff;border-color:var(--text)}
+.filters .search{margin-right:auto;width:240px}
+.trust{display:flex;align-items:center;gap:8px}
+.trust .b{width:70px;height:6px;border-radius:9px;background:var(--grid);overflow:hidden}
+.trust .b i{display:block;height:100%}
+.fraud{display:grid;gap:12px}
+.fr{display:flex;gap:14px;align-items:flex-start;transition:opacity .35s,transform .35s}
+.fr.gone{opacity:0;transform:translateX(-20px)}
+.fr .fi{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+.fr .body{flex:1;min-width:0}
+.fr .body b{font-size:14.5px}
+.fr .body p{color:var(--muted);font-size:13px;line-height:1.9;margin-top:4px}
+.fr .meta{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.fr .acts{display:flex;gap:6px;flex-wrap:wrap}
+.sev{font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:999px;display:inline-flex;gap:4px;align-items:center}
+.sev.hi{background:var(--bad-soft);color:var(--bad)}.sev.md{background:var(--warn-soft);color:var(--warn)}
+.inp{border:1.5px solid var(--line);border-radius:11px;padding:8px 10px;font-size:13.5px;width:100%;outline:0;background:var(--surface);color:var(--text);transition:border-color .2s,box-shadow .2s}
+.inp:focus{border-color:var(--p);box-shadow:0 0 0 4px var(--p-soft)}
+.inp.num{direction:ltr;text-align:left;width:110px}
+.switch{width:44px;height:26px;border-radius:999px;background:var(--line);position:relative;transition:background-color .3s;flex:none;cursor:pointer;display:inline-block;border:0}
+.switch::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.2);transition:transform .3s cubic-bezier(.3,.9,.3,1.2)}
+.switch.on{background:var(--p)}.switch.on::after{transform:translateX(-18px)}
+.sets{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.set{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px solid var(--line)}
+.set:first-of-type{border-top:0}
+.set b{font-size:13.5px;display:block}.set small{color:var(--muted);font-size:12px}
+.save-bar{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#14162b;color:#fff;padding:12px 18px;border-radius:14px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:.35s cubic-bezier(.2,.9,.2,1.2);z-index:90;display:flex;gap:8px;align-items:center;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast .ic{color:#4ade80}
+.demo{font-size:12px;color:var(--faint);text-align:center;margin-top:28px}
+.mtop{margin-top:16px}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+@media (max-width:1200px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.sets{grid-template-columns:1fr}}
+@media (max-width:860px){
+  .shell{flex-direction:column}
+  .side{width:auto;height:auto;position:sticky;top:0;z-index:30;flex-direction:row;overflow-x:auto;padding:10px 12px;gap:6px;scrollbar-width:none}
+  .side::-webkit-scrollbar{display:none}
+  .brand{padding:0 4px 0 10px;font-size:17px}.brand small,.side-f{display:none}
+  .js-nav{display:flex;gap:6px}
+  .nav{width:auto;flex:none;padding:9px 12px;font-size:13px}
+  .main{padding:18px 16px 32px}
+  .head{flex-wrap:wrap}.head .search{order:3;width:100%;margin:0}.me{margin-right:auto}
+  .kpi .v{font-size:23px}
+  .filters .search{width:100%}
+  .fr{flex-wrap:wrap}.fr .acts{width:100%}
+}
+@media (max-width:420px){.kpis{grid-template-columns:1fr 1fr;gap:10px}.kpi{padding:14px}.kpi .l span{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5cff"/><stop offset=".55" stop-color="#4f74ff"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs><rect width="48" height="48" rx="15" fill="url(#lg)"/><circle cx="19" cy="24" r="8.2" fill="none" stroke="#fff" stroke-width="3.6"/><circle cx="29" cy="24" r="8.2" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3.6"/></svg><div>پیوند<small>پنل مدیریت</small></div></div>
+    <div class="js-nav"></div>
+    <div class="side-f">نسخه‌ی نمایشی پنل؛ داده‌ها ساختگی هستند.<br><a href="index.html">← بازگشت به اپلیکیشن</a></div>
+  </aside>
+  <div class="main">
+    <header class="head"><div><h1 class="js-title">داشبورد</h1><small class="js-date"></small></div>
+      <label class="search"><svg class="ic sm" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input placeholder="جستجوی کاربر، سفارش یا کانال…" class="js-gsearch"></label>
+      <div class="me"><i>م</i><div><b>مدیر سیستم</b><small class="sub" style="color:var(--muted)">دسترسی کامل</small></div></div></header>
+
+    <section class="page on" id="p-dash">
+      <div class="kpis js-kpis"></div>
+      <div class="grid2">
+        <div class="card"><div class="ch"><div><h3>فروش سکه</h3><div class="sub">میلیون تومان، به تفکیک روز</div></div><div class="range-tabs js-rt"><button data-r="7">۷ روز</button><button class="on" data-r="14">۱۴ روز</button><button data-r="30">۳۰ روز</button></div></div>
+          <div class="chart" id="sales"><div class="tip" id="tip"></div></div></div>
+        <div class="card"><div class="ch"><div><h3>ترکیب سفارش‌ها</h3><div class="sub">۳۰ روز اخیر، بر اساس تعداد</div></div></div>
+          <div class="mix" role="img" aria-label="ممبر ۶۴ درصد، بازدید ۳۶ درصد"><div style="flex:64;background:var(--s1)"><span>ممبر ۶۴٪</span></div><div style="flex:36;background:var(--s2)"><span>بازدید ۳۶٪</span></div></div>
+          <div class="legend"><span><i style="background:var(--s1)"></i>ممبر کانال</span><span><i style="background:var(--s2)"></i>بازدید پست</span></div>
+          <div class="facts">
+            <div class="fact"><span>میانگین زمان شروع سفارش</span><b>۱۸ دقیقه</b></div>
+            <div class="fact"><span>ریزش جبران‌شده</span><b>۲٫۱٪</b></div>
+            <div class="fact"><span>کاربران جدید امروز</span><b>۸۴۲</b></div>
+            <div class="fact"><span>عضویت‌های تأییدشده امروز</span><b>۲۱٬۳۶۰</b></div></div></div>
+      </div>
+      <div class="grid2">
+        <div class="card"><div class="ch"><div><h3>آخرین سفارش‌ها</h3><div class="sub">به‌روزرسانی زنده</div></div><button class="btn btn-s" data-go="orders">همه‌ی سفارش‌ها</button></div><div class="tbl-wrap"><table class="sm"><thead><tr><th>کانال</th><th>نوع</th><th>پیشرفت</th><th>وضعیت</th></tr></thead><tbody class="js-recent"></tbody></table></div></div>
+        <div class="card"><div class="ch"><div><h3>هشدارهای تقلب</h3><div class="sub">نیازمند بررسی</div></div><button class="btn btn-d" data-go="fraud">بررسی</button></div><div class="js-fraudmini"></div></div>
+      </div>
+    </section>
+
+    <section class="page" id="p-orders"><div class="card">
+      <div class="filters js-ofilters"></div>
+      <div class="tbl-wrap"><table><thead><tr><th>کد</th><th>کانال</th><th>سفارش‌دهنده</th><th>نوع</th><th>تعداد</th><th>پیشرفت</th><th>وضعیت</th><th>ثبت</th><th>عملیات</th></tr></thead><tbody class="js-orders"></tbody></table></div></div></section>
+
+    <section class="page" id="p-users"><div class="card">
+      <div class="filters js-ufilters"></div>
+      <div class="tbl-wrap"><table><thead><tr><th>کاربر</th><th>شماره</th><th>موجودی</th><th>امتیاز اعتماد</th><th>کار امروز</th><th>دستگاه</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody class="js-users"></tbody></table></div></div></section>
+
+    <section class="page" id="p-fraud"><div class="fraud js-fraud"></div></section>
+
+    <section class="page" id="p-packs"><div class="card"><div class="ch"><div><h3>بسته‌های سکه</h3><div class="sub">قیمت، هدیه و برچسب هر بسته؛ تغییرات بلافاصله در اپ اعمال می‌شود.</div></div><button class="btn btn-s js-addpack"><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>افزودن بسته</button></div>
+      <div class="tbl-wrap"><table><thead><tr><th>سکه</th><th>هدیه (٪)</th><th>قیمت (تومان)</th><th>جمع سکه</th><th>برچسب</th><th>فعال</th><th></th></tr></thead><tbody class="js-packs"></tbody></table></div>
+      <div class="save-bar"><button class="btn btn-p lg js-save">ذخیره‌ی تغییرات</button></div></div></section>
+
+    <section class="page" id="p-settings"><div class="sets js-sets"></div><div class="save-bar"><button class="btn btn-g lg js-reset">بازگردانی</button><button class="btn btn-p lg js-save">ذخیره‌ی تنظیمات</button></div></section>
+
+    <p class="demo">پیوند، پنل مدیریت نسخه‌ی ۱٫۰ (نمایشی)</p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const fa=n=>Number(n).toLocaleString('fa-IR');
+const fd=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const I={grid:'<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>',
+  send:'<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  alert:'<path d="m21.7 18-8-14a2 2 0 0 0-3.4 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3z"/><path d="M12 9v4M12 17h.01"/>',coins:'<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/>',
+  set:'<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+  up:'<path d="m18 15-6-6-6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',check:'<path d="M20 6 9 17l-5-5"/>',clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  pause:'<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>',play:'<path d="m6 3 14 9-14 9z"/>',ban:'<circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/>',
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',trash:'<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  phone:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>',zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>',
+  bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>'};
+const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
+const GR=[['#7c5cff','#4f74ff'],['#fb923c','#f43f5e'],['#10b981','#0ea5a4'],['#38bdf8','#6366f1'],['#fbbf24','#f97316'],['#f472b6','#a855f7'],['#4ade80','#16a34a'],['#94a3b8','#475569']];
+const av=(n,i)=>`<div class="av" style="background:linear-gradient(135deg,${GR[i%8][0]},${GR[i%8][1]})">${n.replace('@','')[0]}</div>`;
+function toast(m,i='check'){const t=$('#toast');t.innerHTML=ic(i,'sm')+m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2300)}
+let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
+
+/* ---------- data ---------- */
+const CH=['دنیای عکاسی','آشپزی با مهتاب','فناوری روز','کتاب‌خوان','زبان انگلیسی در ۵ دقیقه','دکوراسیون خانه','سفرنامه ایران','بازار موبایل','ورزش در خانه','اخبار اقتصادی','خبر فوری','گل و گیاه آپارتمانی','پوشاک زمستانه','عکاسی با موبایل'];
+const NM=['نگار رحیمی','علی محمدی','مریم کاظمی','رضا احمدی','زهرا موسوی','حسین کریمی','سارا جعفری','مهدی رضایی','فاطمه حسینی','امیر نوری','لیلا صادقی','محمد یزدانی'];
+const STS={run:['st-run','در حال انجام','clock'],done:['st-done','تکمیل شد','check'],q:['st-q','در صف','clock'],pause:['st-pause','متوقف','pause']};
+const ORD=CH.map((c,i)=>{const type=rnd()>.38?'member':'view',qty=type==='member'?[500,1000,2000,3000,5000][i%5]:[1000,5000,10000,20000][i%4];
+  const st=i<6?'run':i<8?'q':i===9?'pause':'done';const done=st==='done'?qty:st==='q'?0:Math.round(qty*(.15+rnd()*.7));
+  return {id:2391-i,ch:c,by:NM[i%NM.length],type,qty,done,st,t:i<3?`${fa(5+i*14)} دقیقه پیش`:i<8?`${fa(i-1)} ساعت پیش`:'دیروز'}});
+const USR=NM.map((n,i)=>({id:48213+i*317,n,ph:'۰۹۱'+fa(i%10)+' ••• '+fa(1000+Math.floor(rnd()*8999)).replace(/٬/g,''),coins:Math.round(200+rnd()*9000),trust:i===4?38:i===9?54:Math.round(70+rnd()*30),today:Math.round(rnd()*100),dev:i===4?3:1,ban:i===4}));
+let FR=[
+  {sev:'hi',t:'چند حساب روی یک دستگاه',u:'زهرا موسوی',d:'۳ حساب پیوند از یک دستگاه وارد شده‌اند و همه روی کانال‌های یکسان عضو شده‌اند.',time:'۱۲ دقیقه پیش'},
+  {sev:'hi',t:'خروج پس از دریافت سکه',u:'امیر نوری',d:'۱۸ بار در ۷ روز گذشته بعد از قطعی شدن سکه از کانال خارج شده است.',time:'۴۰ دقیقه پیش'},
+  {sev:'md',t:'سرعت غیرعادی انجام کار',u:'مهدی رضایی',d:'۴۰ کار در کمتر از ۲ دقیقه؛ فاصله‌ی زمانی کارها از رفتار انسانی کوتاه‌تر است.',time:'۲ ساعت پیش'},
+  {sev:'md',t:'کانال با ریزش بالا',u:'کانال «بازار موبایل»',d:'۲۲٪ ریزش در ۴۸ ساعت؛ احتمال حذف دستی اعضا توسط مدیر کانال.',time:'۵ ساعت پیش'},
+  {sev:'md',t:'دعوت‌های مشکوک',u:'حسین کریمی',d:'۹ دعوت موفق از یک محدوده‌ی IP در یک ساعت؛ پاداش دعوت موقتاً نگه داشته شد.',time:'دیروز'}];
+let PK=[{c:500,b:0,p:29000,l:'',on:1},{c:1200,b:10,p:59000,l:'',on:1},{c:3000,b:20,p:139000,l:'پرفروش‌ترین',on:1},{c:7000,b:30,p:299000,l:'به‌صرفه',on:1},{c:15000,b:40,p:590000,l:'بسته‌ی حرفه‌ای',on:1}];
+const SETS=[
+  {h:'پاداش‌ها',d:'سکه‌ای که کاربر برای هر کار می‌گیرد',f:[['سکه‌ی هر عضویت','reward_join',4,'سکه'],['سکه‌ی هر بازدید','reward_view',1,'سکه'],['جایزه‌ی دعوت','ref_bonus',100,'سکه'],['سهم از سکه‌گیری دوست','ref_share',10,'درصد']]},
+  {h:'هزینه‌ی سفارش',d:'سکه‌ای که از سفارش‌دهنده کم می‌شود',f:[['هزینه‌ی هر ممبر','cost_member',5,'سکه'],['هزینه‌ی هر بازدید','cost_view',1,'سکه'],['حداقل سفارش ممبر','min_member',50,'نفر'],['ضمانت جبران ریزش','refill_days',30,'روز']]},
+  {h:'ضدتقلب',d:'قوانینی که جلوی سوءاستفاده را می‌گیرند',f:[['سقف کار روزانه‌ی هر کاربر','daily_cap',100,'کار'],['زمان قطعی شدن سکه','hold_hours',24,'ساعت'],['حداکثر حساب برای هر دستگاه','max_dev',1,'حساب'],['حداقل فاصله‌ی دو کار','min_gap',8,'ثانیه']]},
+  {h:'سیستم',d:'روشن و خاموش کردن بخش‌ها',t:[['ثبت‌نام کاربر جدید',1],['پرداخت درون‌برنامه‌ای (بازار و مایکت)',1],['درگاه بانکی نسخه‌ی وب',1],['حالت تعمیرات',0]]}];
+
+/* ---------- nav ---------- */
+const PAGES=[['dash','داشبورد','grid'],['orders','سفارش‌ها','send'],['users','کاربران','users'],['fraud','گزارش‌های تقلب','alert'],['packs','بسته‌های سکه','bag'],['settings','تنظیمات','set']];
+function nav(){$('.js-nav').innerHTML=PAGES.map(([k,t,i])=>`<button class="nav ${k===cur?'on':''}" data-go="${k}">${ic(i)}${t}${k==='fraud'&&FR.length?`<span class="cnt">${fa(FR.length)}</span>`:''}</button>`).join('')}
+let cur='dash';
+function go(k){cur=k;$$('.page').forEach(p=>p.classList.toggle('on',p.id==='p-'+k));$('.js-title').textContent=PAGES.find(p=>p[0]===k)[1];nav();window.scrollTo({top:0});if(k==='dash')drawSales()}
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){go(g.dataset.go)}});
+
+/* ---------- dashboard ---------- */
+function kpis(){const K=[['کاربران فعال امروز','۱۲٬۴۸۰','',8.2,'users','#6352f5'],['سفارش‌های امروز','۳۸۶','',12.4,'send','#0f9e8e'],['فروش امروز','۴۸٫۶','میلیون تومان',5.1,'bag','#e8830c'],['سکه‌ی در انتظار قطعی','۹۲٬۳۰۰','',-3.4,'clock','#0ea5e9']];
+  $('.js-kpis').innerHTML=K.map(([l,v,u,d,i,c])=>`<div class="card kpi"><div class="l"><span style="background:${c}17;color:${c}">${ic(i)}</span>${l}</div><div class="v">${v} <small>${u}</small></div><span class="delta ${d>0?'up':'down'}">${ic(d>0?'up':'down','xs')}${fa(Math.abs(d))}٪</span><span>نسبت به دیروز</span></div>`).join('')}
+const SALES=(()=>{const a=[];let v=30;for(let i=0;i<30;i++){v+= (rnd()-.4)*4.2;v=Math.max(22,Math.min(52,v));a.push(+v.toFixed(1))}a[29]=48.6;return a})();
+let range=14;
+function drawSales(){const box=$('#sales');const W=box.clientWidth,H=250,pl=34,pr=8,pt=12,pb=28;if(!W)return;const d=SALES.slice(-range),n=d.length;
+  const max=Math.ceil(Math.max(...d)/10)*10,min=Math.max(0,Math.floor(Math.min(...d)/10)*10-10),ticks=(max-min)/10;
+  const x=i=>pl+(W-pl-pr)*(n===1?0:i/(n-1)),y=v=>pt+(H-pt-pb)*(1-(v-min)/(max-min));
+  const days=Array.from({length:n},(_,i)=>{const dt=new Date();dt.setDate(dt.getDate()-(n-1-i));return dt});
+  const fmt=dt=>dt.toLocaleDateString('fa-IR',{day:'numeric',month:'short'});
+  let g='';for(let k=0;k<=ticks;k++){const v=min+(max-min)*k/ticks,yy=y(v);g+=`<line x1="${pl}" x2="${W-pr}" y1="${yy}" y2="${yy}" stroke="var(--grid)" stroke-width="1"/><text x="${pl-8}" y="${yy+4}" text-anchor="end" font-size="11" fill="var(--faint)">${fa(Math.round(v))}</text>`}
+  const every=n>14?5:n>7?2:1;let xl='';days.forEach((dt,i)=>{if((n-1-i)%every===0)xl+=`<text x="${x(i)}" y="${H-6}" text-anchor="middle" font-size="11" fill="var(--faint)">${fmt(dt)}</text>`});
+  const line=d.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join('');
+  const area=line+`L${x(n-1)} ${H-pb}L${x(0)} ${H-pb}Z`;
+  box.querySelector('svg')&&box.querySelector('svg').remove();
+  box.insertAdjacentHTML('afterbegin',`<svg viewBox="0 0 ${W} ${H}" height="${H}" style="direction:ltr" role="img" aria-label="نمودار فروش سکه در ${fa(n)} روز اخیر"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b50e6" stop-opacity=".18"/><stop offset="1" stop-color="#5b50e6" stop-opacity="0"/></linearGradient></defs>
+    ${g}${xl}<path d="${area}" fill="url(#ag)"/><path d="${line}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${x(n-1)}" cy="${y(d[n-1])}" r="5" fill="var(--s1)" stroke="#fff" stroke-width="2"/>
+    <text x="${x(n-1)-8}" y="${y(d[n-1])-12}" text-anchor="end" font-size="12" font-weight="800" fill="var(--text)">${fa(d[n-1])}</text>
+    <g class="hov" style="display:none"><line class="hl" y1="${pt}" y2="${H-pb}" stroke="var(--faint)" stroke-dasharray="3 3"/><circle class="hc" r="5" fill="var(--s1)" stroke="#fff" stroke-width="2"/></g>
+    <rect x="${pl}" y="0" width="${W-pl-pr}" height="${H-pb}" fill="transparent" class="hit"/></svg>`);
+  const svg=box.querySelector('svg'),hov=svg.querySelector('.hov'),tip=$('#tip');
+  const move=ev=>{const r=svg.getBoundingClientRect(),px=(ev.touches?ev.touches[0].clientX:ev.clientX)-r.left;let i=Math.round((px-pl)/(W-pl-pr)*(n-1));i=Math.max(0,Math.min(n-1,i));
+    hov.style.display='';hov.querySelector('.hl').setAttribute('x1',x(i));hov.querySelector('.hl').setAttribute('x2',x(i));hov.querySelector('.hc').setAttribute('cx',x(i));hov.querySelector('.hc').setAttribute('cy',y(d[i]));
+    tip.innerHTML=`${days[i].toLocaleDateString('fa-IR',{weekday:'long',day:'numeric',month:'long'})}<br><b>${fa(d[i])}</b> میلیون تومان`;tip.style.left=Math.max(70,Math.min(W-70,x(i)))+'px';tip.style.top=y(d[i])+'px';tip.classList.add('on')};
+  const leave=()=>{hov.style.display='none';tip.classList.remove('on')};
+  const hit=svg.querySelector('.hit');hit.addEventListener('mousemove',move);hit.addEventListener('touchmove',move,{passive:true});hit.addEventListener('mouseleave',leave);hit.addEventListener('touchend',leave)}
+$('.js-rt').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;range=+b.dataset.r;$$('.js-rt button').forEach(x=>x.classList.toggle('on',x===b));drawSales()});
+window.addEventListener('resize',()=>{clearTimeout(window._r);window._r=setTimeout(drawSales,120)});
+
+const stc=s=>{const [c,t,i]=STS[s];return `<span class="st ${c}">${ic(i)}${t}</span>`};
+const prog=o=>`<div class="prog"><div class="b"><i style="width:${o.done/o.qty*100}%${o.type==='view'?';background:var(--s2)':''}"></i></div><small>${fa(Math.round(o.done/o.qty*100))}٪</small></div>`;
+function recent(){$('.js-recent').innerHTML=ORD.slice(0,5).map((o,i)=>`<tr data-oid="${o.id}"><td><div class="who">${av(o.ch,i)}<div><b>${o.ch}</b><small>${o.t}</small></div></div></td><td>${o.type==='member'?'ممبر':'بازدید'}</td><td>${prog(o)}</td><td>${stc(o.st)}</td></tr>`).join('')}
+function fraudMini(){$('.js-fraudmini').innerHTML=FR.length?FR.slice(0,3).map(f=>`<div class="fact" style="align-items:flex-start;gap:10px"><span style="display:flex;gap:10px;align-items:flex-start"><span class="sev ${f.sev}">${f.sev==='hi'?'جدی':'هشدار'}</span><span><b style="display:block;font-size:13.5px">${f.t}</b><small>${f.u}</small></span></span><small>${f.time}</small></div>`).join(''):`<div class="empty">${ic('shield')}<br>هشداری برای بررسی نیست.</div>`}
+
+/* ---------- orders ---------- */
+let of='all',oq='';
+function orders(){const F=[['all','همه'],['run','در حال انجام'],['q','در صف'],['pause','متوقف'],['done','تکمیل شده']];
+  $('.js-ofilters').innerHTML=F.map(([k,t])=>`<button class="chip ${of===k?'on':''}" data-of="${k}">${t} <span style="opacity:.6">${fa(k==='all'?ORD.length:ORD.filter(o=>o.st===k).length)}</span></button>`).join('')+`<label class="search">${ic('search','sm')}<input class="js-oq" placeholder="جستجوی کانال یا کد" value="${oq}"></label>`;
+  const L=ORD.filter(o=>(of==='all'||o.st===of)&&(!oq||o.ch.includes(oq)||String(o.id).includes(oq)||fa(o.id).includes(oq)));
+  $('.js-orders').innerHTML=L.length?L.map((o,i)=>`<tr data-oid="${o.id}"><td><b>${String(o.id).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])}</b></td><td><div class="who">${av(o.ch,i)}<div><b>${o.ch}</b><small>کانال عمومی</small></div></div></td><td>${o.by}</td><td>${o.type==='member'?'ممبر':'بازدید'}</td><td>${fa(o.qty)}</td><td>${prog(o)}</td><td>${stc(o.st)}</td><td><small style="color:var(--muted)">${o.t}</small></td>
+    <td>${o.st==='run'||o.st==='q'?`<button class="btn btn-g" data-oact="pause" data-id="${o.id}">${ic('pause','sm')}توقف</button>`:o.st==='pause'?`<button class="btn btn-ok" data-oact="play" data-id="${o.id}">${ic('play','sm')}ادامه</button>`:`<button class="btn btn-g" data-oact="refill" data-id="${o.id}">${ic('shield','sm')}جبران ریزش</button>`}</td></tr>`).join(''):`<tr><td colspan="9" class="empty">سفارشی با این مشخصات پیدا نشد.</td></tr>`}
+document.addEventListener('click',e=>{const f=e.target.closest('[data-of]');if(f){of=f.dataset.of;orders();return}
+  const a=e.target.closest('[data-oact]');if(!a)return;const o=ORD.find(x=>x.id===+a.dataset.id);
+  if(a.dataset.oact==='pause'){o.st='pause';toast(`سفارش ${fd(o.id)} متوقف شد`,'pause')}else if(a.dataset.oact==='play'){o.st='run';toast(`سفارش ${fd(o.id)} دوباره فعال شد`,'play')}else{toast(`بررسی ریزش سفارش ${fd(o.id)} در صف قرار گرفت`,'shield')}
+  orders();recent()});
+document.addEventListener('input',e=>{if(e.target.classList.contains('js-oq')){oq=e.target.value.trim();const pos=e.target.selectionStart;orders();const i=$('.js-oq');i.focus();i.setSelectionRange(pos,pos)}
+  if(e.target.classList.contains('js-uq')){uq=e.target.value.trim();const pos=e.target.selectionStart;users();const i=$('.js-uq');i.focus();i.setSelectionRange(pos,pos)}});
+
+/* ---------- users ---------- */
+let uf='all',uq='';
+function users(){const F=[['all','همه'],['act','فعال'],['ban','مسدود'],['low','اعتماد پایین']];
+  $('.js-ufilters').innerHTML=F.map(([k,t])=>`<button class="chip ${uf===k?'on':''}" data-uf="${k}">${t}</button>`).join('')+`<label class="search">${ic('search','sm')}<input class="js-uq" placeholder="نام یا شناسه" value="${uq}"></label>`;
+  const L=USR.filter(u=>(uf==='all'||(uf==='ban'&&u.ban)||(uf==='act'&&!u.ban)||(uf==='low'&&u.trust<60))&&(!uq||u.n.includes(uq)||String(u.id).includes(uq)));
+  $('.js-users').innerHTML=L.length?L.map((u,i)=>{const tc=u.trust>=80?'var(--ok)':u.trust>=60?'var(--warn)':'var(--bad)';return `<tr><td><div class="who">${av(u.n,i+2)}<div><b>${u.n}</b><small>شناسه <span class="ltr">${fa(u.id).replace(/٬/g,'')}</span></small></div></div></td>
+    <td><span class="ltr">${u.ph}</span></td><td><b>${fa(u.coins)}</b></td><td><div class="trust"><div class="b"><i style="width:${u.trust}%;background:${tc}"></i></div><small>${fa(u.trust)}</small></div></td><td>${fa(u.today)} از ${fa(100)}</td>
+    <td>${u.dev>1?`<span class="sev hi">${ic('phone','xs')}${fa(u.dev)} حساب</span>`:'<small style="color:var(--muted)">۱ حساب</small>'}</td><td>${u.ban?'<span class="st st-ban">'+ic('ban')+'مسدود</span>':'<span class="st st-act">'+ic('check')+'فعال</span>'}</td>
+    <td>${u.ban?`<button class="btn btn-ok" data-uact="unban" data-id="${u.id}">رفع مسدودی</button>`:`<button class="btn btn-d" data-uact="ban" data-id="${u.id}">${ic('ban','sm')}مسدود کردن</button>`}</td></tr>`}).join(''):`<tr><td colspan="8" class="empty">کاربری پیدا نشد.</td></tr>`}
+document.addEventListener('click',e=>{const f=e.target.closest('[data-uf]');if(f){uf=f.dataset.uf;users();return}
+  const a=e.target.closest('[data-uact]');if(!a)return;const u=USR.find(x=>x.id===+a.dataset.id);u.ban=a.dataset.uact==='ban';toast(u.ban?`${u.n} مسدود شد`:`مسدودی ${u.n} برداشته شد`,u.ban?'ban':'check');users()});
+
+/* ---------- fraud ---------- */
+function fraud(){$('.js-fraud').innerHTML=FR.length?FR.map((f,i)=>`<div class="card fr" data-fi="${i}"><div class="fi" style="background:${f.sev==='hi'?'var(--bad-soft)':'var(--warn-soft)'};color:${f.sev==='hi'?'var(--bad)':'var(--warn)'}">${ic('alert')}</div>
+  <div class="body"><b>${f.t}</b><p>${f.d}</p><div class="meta"><span class="sev ${f.sev}">${f.sev==='hi'?ic('alert','xs')+'جدی':ic('alert','xs')+'هشدار'}</span><span>${f.u}</span><span>${f.time}</span></div></div>
+  <div class="acts"><button class="btn btn-d" data-fact="ban" data-i="${i}">${ic('ban','sm')}مسدود کردن</button><button class="btn btn-s" data-fact="coin" data-i="${i}">${ic('coins','sm')}کسر سکه</button><button class="btn btn-g" data-fact="ok" data-i="${i}">نادیده گرفتن</button></div></div>`).join('')
+  :`<div class="card empty">${ic('shield')}<br><b>همه‌ی گزارش‌ها بررسی شد.</b><br>سیستم ضدتقلب به‌طور خودکار رفتارهای مشکوک را این‌جا نشان می‌دهد.</div>`}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-fact]');if(!a)return;const i=+a.dataset.i,f=FR[i],card=a.closest('.fr');
+  const msg={ban:`${f.u} مسدود شد`,coin:`سکه‌های مشکوک ${f.u} کسر شد`,ok:'گزارش بسته شد'}[a.dataset.fact];card.classList.add('gone');
+  setTimeout(()=>{FR.splice(i,1);fraud();fraudMini();nav()},350);toast(msg,a.dataset.fact==='ok'?'check':'shield')});
+
+/* ---------- packs ---------- */
+function packs(){$('.js-packs').innerHTML=PK.map((p,i)=>`<tr><td><input class="inp num" data-pk="${i}" data-f="c" value="${p.c}" inputmode="numeric"></td><td><input class="inp num" style="width:80px" data-pk="${i}" data-f="b" value="${p.b}" inputmode="numeric"></td><td><input class="inp num" style="width:130px" data-pk="${i}" data-f="p" value="${p.p}" inputmode="numeric"></td>
+  <td><b class="js-tot${i}">${fa(Math.round(p.c*(1+p.b/100)))}</b></td><td><input class="inp" style="width:150px" data-pk="${i}" data-f="l" value="${p.l}" placeholder="بدون برچسب"></td><td><button class="switch ${p.on?'on':''}" data-pks="${i}" aria-label="فعال"></button></td><td><button class="btn btn-g" data-pkd="${i}" aria-label="حذف">${ic('trash','sm')}</button></td></tr>`).join('')}
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.pk===undefined)return;const p=PK[+t.dataset.pk];p[t.dataset.f]=t.dataset.f==='l'?t.value:+t.value.replace(/[^\d]/g,'')||0;const el=$('.js-tot'+t.dataset.pk);if(el)el.textContent=fa(Math.round(p.c*(1+p.b/100)))});
+document.addEventListener('click',e=>{const s=e.target.closest('[data-pks]');if(s){PK[+s.dataset.pks].on^=1;s.classList.toggle('on');return}
+  const d=e.target.closest('[data-pkd]');if(d){PK.splice(+d.dataset.pkd,1);packs();toast('بسته حذف شد','trash');return}
+  if(e.target.closest('.js-addpack')){PK.push({c:1000,b:0,p:49000,l:'',on:1});packs();toast('بسته‌ی جدید اضافه شد')}
+  if(e.target.closest('.js-save')){toast(cur==='packs'?'بسته‌ها ذخیره و در اپ منتشر شد':'تنظیمات ذخیره شد')}
+  if(e.target.closest('.js-reset')){sets();toast('تنظیمات به حالت قبل برگشت','clock')}
+  const sw=e.target.closest('[data-sw]');if(sw){sw.classList.toggle('on')}});
+
+/* ---------- settings ---------- */
+function sets(){$('.js-sets').innerHTML=SETS.map(g=>`<div class="card"><h3>${g.h}</h3><div class="sub" style="margin-bottom:8px">${g.d}</div>
+  ${g.f?g.f.map(([l,k,v,u])=>`<div class="set"><div><b>${l}</b></div><div style="display:flex;align-items:center;gap:8px"><input class="inp num" value="${v}" inputmode="numeric" aria-label="${l}"><small style="width:44px;color:var(--muted)">${u}</small></div></div>`).join('')
+  :g.t.map(([l,on])=>`<div class="set"><div><b>${l}</b></div><button class="switch ${on?'on':''}" data-sw aria-label="${l}"></button></div>`).join('')}</div>`).join('')}
+
+/* ---------- live ---------- */
+setInterval(()=>{ORD.forEach(o=>{if(o.st!=='run')return;o.done=Math.min(o.qty,o.done+Math.ceil(o.qty*(.005+rnd()*.012)));if(o.done>=o.qty)o.st='done'});recent();if(cur==='orders'&&document.activeElement?.classList?.contains('js-oq')!==true)orders()},3000);
+$('.js-gsearch').addEventListener('keydown',e=>{if(e.key==='Enter'){oq=e.target.value.trim();of='all';go('orders');orders()}});
+
+/* init */
+{const P=Object.fromEntries(new Intl.DateTimeFormat('fa-IR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).formatToParts(new Date()).map(x=>[x.type,x.value]));$('.js-date').textContent=`${P.weekday} ${P.day} ${P.month} ${P.year}`}
+nav();kpis();recent();fraudMini();orders();users();fraud();packs();sets();
+document.fonts.ready.then(drawSales);drawSales();
+</script>
+</body>
+</html>

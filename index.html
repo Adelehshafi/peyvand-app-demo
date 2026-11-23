@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6d5dfc">
+<title>پیوند | رشد واقعی کانال ایتا</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#f2f3fa;--surface:#fff;--surface-2:#f5f6fc;--text:#14162b;--muted:#6b7090;--line:#e5e7f1;
+  --p:#6352f5;--p-soft:rgba(99,82,245,.1);--teal:#0f9e8e;
+  --grad:linear-gradient(135deg,#7b5cff 0%,#4f74ff 52%,#14b8a6 100%);
+  --gold:#f6b73c;--gold-ink:#b86e00;--gold-soft:rgba(246,183,60,.16);
+  --ok:#119a4e;--ok-soft:rgba(17,154,78,.11);--bad:#e5484d;--bad-soft:rgba(229,72,77,.1);
+  --sh:0 6px 24px rgba(28,32,88,.06);--r:20px;
+}
+.app[data-theme=dark]{
+  --bg:#0b0d19;--surface:#141729;--surface-2:#1b1f35;--text:#eef0ff;--muted:#959bc0;--line:#252a45;
+  --p:#8b7dff;--p-soft:rgba(139,125,255,.16);--gold-ink:#f6c25a;--gold-soft:rgba(246,183,60,.14);
+  --ok:#3ccf7e;--ok-soft:rgba(60,207,126,.14);--bad-soft:rgba(229,72,77,.16);--sh:0 8px 28px rgba(0,0,0,.35);
+}
+html,body{height:100%}
+body{font-family:"Vazirmatn",Tahoma,sans-serif;color:#14162b;background:#eceef8}
+button,input{font-family:inherit}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+/* ---------- desktop stage ---------- */
+.stage{min-height:100vh;display:flex;align-items:center;justify-content:center;gap:80px;padding:24px 32px;
+  background:radial-gradient(900px 620px at 88% 8%,rgba(123,92,255,.2),transparent 62%),radial-gradient(760px 560px at 6% 96%,rgba(20,184,166,.18),transparent 60%),#eceef8}
+.intro{max-width:440px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:26px}
+.brand svg{width:46px;height:46px}
+.intro h1{font-size:42px;line-height:1.4;font-weight:900;margin:26px 0 14px;letter-spacing:-.6px}
+.intro h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro>p{color:#555b7e;line-height:2.05;font-size:16px}
+.points{list-style:none;margin:26px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.points li{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.62);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.9);padding:11px 12px;border-radius:14px;font-size:13.5px;font-weight:600;box-shadow:0 4px 14px rgba(28,32,88,.04)}
+.points .ic{color:var(--p);flex:none}
+.cta{display:flex;gap:10px;flex-wrap:wrap}
+.cta a{text-decoration:none}
+.demo-note{font-size:12.5px;color:#8a8fae;margin-top:18px;display:flex;align-items:center;gap:6px}
+
+.device{position:relative;width:392px;height:min(848px,calc(100vh - 48px));min-height:640px;border-radius:56px;padding:11px;background:#0d0f1e;flex:none;
+  box-shadow:0 50px 100px rgba(20,24,70,.3),0 0 0 1.5px #2b3050 inset,0 0 0 6px #1a1d33 inset}
+.device::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:116px;height:33px;border-radius:20px;background:#000;z-index:70}
+.app{position:relative;height:100%;border-radius:45px;overflow:hidden;background:var(--bg);color:var(--text);display:flex;flex-direction:column;transition:background-color .35s,color .35s}
+.status{height:52px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:8px 32px 0 34px;font-size:15px;font-weight:700;direction:ltr}
+.status .r{display:flex;gap:6px;align-items:center}
+.status svg{fill:currentColor}
+
+/* ---------- top bar ---------- */
+.top{display:flex;align-items:center;gap:10px;padding:6px 16px 12px;flex:none}
+.avatar{width:44px;height:44px;border-radius:15px;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px;flex:none}
+.hello{flex:1;min-width:0}
+.hello small{display:block;color:var(--muted);font-size:12px}
+.hello b{font-size:15.5px;font-weight:800}
+.coinpill{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--line);padding:7px 13px 7px 8px;border-radius:999px;font-weight:800;font-size:14.5px;box-shadow:var(--sh);cursor:pointer;color:var(--text)}
+.iconbtn{width:44px;height:44px;border-radius:15px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;color:var(--text);position:relative;cursor:pointer;flex:none}
+.iconbtn .dot{position:absolute;top:11px;right:12px;width:9px;height:9px;border-radius:50%;background:var(--bad);border:2px solid var(--surface)}
+
+.coin{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;flex:none;font-style:normal;
+  background:radial-gradient(circle at 34% 28%,#fff1c4 0,#ffd572 26%,#f6b73c 58%,#d98a10 100%);box-shadow:inset 0 -2px 0 rgba(120,60,0,.22),0 2px 6px rgba(217,138,16,.35)}
+.coin::after{content:"";width:46%;height:46%;border-radius:50%;border:2px solid rgba(140,80,0,.45);box-sizing:border-box}
+.coin.xs{width:16px;height:16px}.coin.xs::after{border-width:1.5px}
+.coin.lg{width:34px;height:34px}
+.coin.xl{width:46px;height:46px}
+.fly{position:absolute;left:0;top:0;z-index:80;pointer-events:none}
+
+.ic{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic.sm{width:18px;height:18px}.ic.xs{width:14px;height:14px;stroke-width:2.4}.ic.lg{width:30px;height:30px}
+
+/* ---------- content ---------- */
+main{flex:1;overflow-y:auto;overflow-x:hidden;padding:2px 16px 124px;scrollbar-width:none;overscroll-behavior:contain}
+main::-webkit-scrollbar{display:none}
+.screen{display:none}
+.screen.on{display:block;animation:rise .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--sh)}
+.sec{margin-top:16px}
+.sec-h{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 10px}
+.sec-h h3,.card h3{font-size:15.5px;font-weight:800}
+.sec-h a{font-size:12.5px;color:var(--p);font-weight:700;cursor:pointer}
+.row-h{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.row-h small,.sub{color:var(--muted);font-size:12px}
+.grow{flex:1;min-width:0}
+.sep{display:inline-block;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.5;margin:0 7px;vertical-align:middle}
+.title{font-size:22px;font-weight:900;margin:2px 2px 14px;letter-spacing:-.3px}
+
+.btn{border:0;font-weight:700;font-size:14px;border-radius:15px;padding:12px 16px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:transform .16s cubic-bezier(.3,.7,.4,1),opacity .2s,background-color .2s;color:var(--text);white-space:nowrap}
+.btn:active{transform:scale(.96)}
+.btn-p{background:var(--grad);color:#fff;box-shadow:0 8px 20px rgba(84,96,255,.28)}
+.btn-s{background:var(--p-soft);color:var(--p)}
+.btn-ghost{background:var(--surface-2);color:var(--muted);border:1px solid var(--line)}
+.btn-ok{background:var(--ok);color:#fff;box-shadow:0 8px 18px rgba(17,154,78,.25)}
+.btn-dark{background:#14162b;color:#fff}
+.btn[disabled]{opacity:.6;pointer-events:none}
+.btn.big{padding:16px;font-size:15.5px;border-radius:17px}
+.w100{width:100%}
+.spin{width:16px;height:16px;border-radius:50%;border:2.2px solid currentColor;border-top-color:transparent;animation:sp .75s linear infinite;flex:none}
+@keyframes sp{to{transform:rotate(360deg)}}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+/* balance */
+.balance{position:relative;overflow:hidden;border-radius:28px;padding:20px 20px 18px;color:#fff;background:var(--grad);box-shadow:0 20px 44px rgba(79,116,255,.33)}
+.balance::before,.balance::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.balance::before{width:240px;height:240px;top:-110px;left:-70px;background:radial-gradient(circle,rgba(255,255,255,.28),transparent 70%)}
+.balance::after{width:180px;height:180px;bottom:-90px;right:10px;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+.balance .lbl{font-size:13px;opacity:.88;display:flex;justify-content:space-between;align-items:center}
+.balance .amt{display:flex;align-items:center;gap:10px;font-size:40px;font-weight:900;margin:8px 0 8px;letter-spacing:-.5px}
+.chip-glass{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);padding:5px 11px;border-radius:999px;font-size:12px;font-weight:600}
+.balance .acts{display:flex;gap:10px;margin-top:18px;position:relative;z-index:1}
+.balance .acts .btn{flex:1}
+.btn-w{background:#fff;color:#3a3fd6}
+.btn-g{background:rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(8px)}
+
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:19px;padding:12px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11.5px;font-weight:700;cursor:pointer;color:var(--text);box-shadow:var(--sh);transition:transform .16s}
+.q:active{transform:scale(.95)}
+.qi{width:42px;height:42px;border-radius:14px;display:grid;place-items:center}
+
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:14px 0}
+.day{border-radius:13px;background:var(--surface-2);border:1px solid var(--line);padding:8px 0 7px;text-align:center;font-size:10.5px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px}
+.day b{font-size:13px;color:var(--text);height:16px;display:grid;place-items:center}
+.day.done{background:var(--ok-soft);border-color:transparent;color:var(--ok)}
+.day.done b{color:var(--ok)}
+.day.today{border-color:var(--p);box-shadow:0 0 0 3px var(--p-soft);color:var(--p)}
+.day.big{background:var(--gold-soft);border-color:transparent}
+.day.big.today{border-color:var(--p)}
+
+.reward{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:800;color:var(--gold-ink);background:var(--gold-soft);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.mission{display:flex;align-items:center;gap:12px;padding:13px 0;border-top:1px dashed var(--line)}
+.mission:first-of-type{border-top:0;padding-top:4px}
+.m-ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+.m-body b{font-size:13.5px;font-weight:700}
+.bar{height:7px;border-radius:9px;background:var(--surface-2);overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;border-radius:9px;background:var(--grad);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.mini{font-size:12px;padding:7px 11px;border-radius:11px}
+
+.ch-av{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:19px;flex:none;text-transform:uppercase;box-shadow:inset 0 -3px 0 rgba(0,0,0,.08)}
+.ord-card{margin-top:10px}
+.ord{display:flex;gap:12px;align-items:center}
+.ord .meta b{font-size:14px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ord .meta small{color:var(--muted);font-size:12px}
+.ord-f{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:8px}
+.st{font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.st i{width:6px;height:6px;border-radius:50%;background:currentColor}
+.st-run{background:var(--p-soft);color:var(--p)}.st-run i{animation:blink 1.2s infinite}
+.st-done{background:var(--ok-soft);color:var(--ok)}
+.st-q{background:var(--gold-soft);color:var(--gold-ink)}
+@keyframes blink{50%{opacity:.25}}
+
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.trust div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 6px;text-align:center;font-size:11.5px;font-weight:700;line-height:1.6}
+.trust .ic{display:block;margin:0 auto 6px;color:var(--teal)}
+
+/* segmented */
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:17px;padding:4px;position:relative;box-shadow:var(--sh)}
+.seg button{flex:1;border:0;background:none;font-weight:700;font-size:14px;color:var(--muted);padding:11px;border-radius:13px;cursor:pointer;position:relative;z-index:1;transition:color .3s;display:flex;align-items:center;justify-content:center;gap:7px}
+.seg button.on{color:#fff}
+.seg .thumb{position:absolute;top:4px;bottom:4px;right:4px;width:calc(50% - 4px);border-radius:13px;background:var(--grad);transition:transform .4s cubic-bezier(.3,.9,.25,1);box-shadow:0 6px 14px rgba(84,96,255,.3)}
+.seg[data-i="1"] .thumb{transform:translateX(-100%)}
+
+.limit{display:flex;align-items:center;gap:14px;margin-top:14px}
+.ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;flex:none;background:conic-gradient(var(--p) calc(var(--v)*1%),var(--surface-2) 0);transition:--v .6s}
+.ring span{width:46px;height:46px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:13px;font-weight:800}
+.limit b{font-size:14px}
+.limit small{display:block;color:var(--muted);font-size:11.5px;line-height:1.8;margin-top:2px}
+
+.chips{display:flex;gap:8px;overflow-x:auto;margin:14px -16px 0;padding:2px 16px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips.nob{margin:12px 0 0;padding:0;flex-wrap:wrap}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px;font-weight:600;padding:8px 15px;border-radius:999px;cursor:pointer;transition:all .2s}
+.chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+.task{margin-top:12px;transition:opacity .35s,transform .35s,max-height .5s cubic-bezier(.4,0,.2,1),margin .5s,padding .5s,border-width .5s}
+.task.gone{opacity:0;transform:scale(.95);max-height:0!important;margin-top:0;padding-top:0;padding-bottom:0;border-width:0;overflow:hidden}
+.task-h{display:flex;align-items:center;gap:12px}
+.task-h .meta b{display:block;font-size:14.5px;font-weight:700}
+.task-h .meta small{color:var(--muted);font-size:12px}
+.task-acts{display:flex;gap:8px;margin-top:14px}
+.task-acts .btn-ghost{padding:12px}
+.ok-line{display:flex;align-items:center;gap:8px;color:var(--ok);font-weight:700;font-size:13px;background:var(--ok-soft);padding:12px 14px;border-radius:14px;margin-top:14px;animation:rise .35s}
+.post{background:var(--surface-2);border-radius:15px;padding:12px 14px;font-size:13px;line-height:1.95;color:var(--muted);border:1px solid var(--line);margin-top:12px}
+.vwait{margin-top:14px}
+.vwait .bar{height:9px;margin:0 0 8px}
+.vwait .bar i{width:0}
+.vwait small{color:var(--muted);font-size:12px;display:flex;align-items:center;gap:6px}
+.empty{text-align:center;padding:34px 16px;color:var(--muted);font-size:13.5px;line-height:2}
+.empty .big-ic{margin-bottom:8px}
+
+.note{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.95;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:17px;padding:13px 14px;margin-top:16px}
+.note .ic{color:var(--teal);margin-top:2px}
+
+/* order form */
+.field{margin-top:16px}
+.field>label{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:9px}
+.field>label span{color:var(--muted);font-weight:500;font-size:12px}
+.inp{display:flex;align-items:center;gap:9px;background:var(--surface);border:1.5px solid var(--line);border-radius:15px;padding:0 13px;transition:border-color .2s,box-shadow .2s}
+.inp:focus-within{border-color:var(--p);box-shadow:0 0 0 4px var(--p-soft)}
+.inp input{flex:1;border:0;background:none;outline:0;font-size:14px;color:var(--text);padding:14px 0;min-width:0}
+.inp input.ltr-in{direction:ltr;text-align:left}
+.inp .ic{color:var(--muted)}
+.inp.ok{border-color:var(--ok)}
+.prev{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 12px;border-radius:15px;background:var(--ok-soft);font-size:13px;animation:rise .3s}
+.prev .ch-av{width:38px;height:38px;border-radius:12px;font-size:15px}
+.prev b{display:block;font-size:13.5px}
+.prev small{color:var(--muted);font-size:11.5px}
+.prev .ic{color:var(--ok)}
+.qty{display:flex;align-items:baseline;gap:8px;justify-content:center}
+.qty b{font-size:40px;font-weight:900;letter-spacing:-.5px}
+.qty span{color:var(--muted);font-size:14px}
+.range{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:9px;outline:0;margin:14px 0 4px;cursor:pointer;
+  background:linear-gradient(to left,var(--p) var(--f,20%),var(--surface-2) var(--f,20%))}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;border:7px solid var(--p);box-shadow:0 4px 12px rgba(40,40,120,.25)}
+.range::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:#fff;border:7px solid var(--p)}
+.guar{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.guar div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 4px;text-align:center;font-size:11.5px;font-weight:700;line-height:1.6}
+.guar .ic{display:block;margin:0 auto 5px;color:var(--p)}
+.sum{margin-top:14px}
+.sum .r{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;padding:6px 0;color:var(--muted)}
+.sum .r b{color:var(--text);display:inline-flex;gap:6px;align-items:center}
+.sum .tot{border-top:1px dashed var(--line);margin-top:8px;padding-top:13px;color:var(--text);font-weight:700}
+.sum .tot:first-child{border-top:0;margin-top:0;padding-top:4px}
+.sum .tot b{font-size:20px;font-weight:900}
+.sum .warn{color:var(--bad)}
+.sum .warn b{color:var(--bad)}
+
+/* shop */
+.shop-hero{position:relative;overflow:hidden;border-radius:24px;padding:18px;background:linear-gradient(135deg,#fff7e3,#ffe9bd);border:1px solid #f8deaa;display:flex;align-items:center;gap:14px;color:#5b3a00}
+.app[data-theme=dark] .shop-hero{background:linear-gradient(135deg,#2a2210,#3a2c0c);border-color:#4a3812;color:#ffe2a6}
+.shop-hero b{font-size:16px;font-weight:900;display:block}
+.shop-hero small{font-size:12.5px;opacity:.8;line-height:1.8;display:block;margin-top:2px}
+.stack{position:relative;width:62px;height:56px;flex:none}
+.stack .coin{position:absolute}
+.packs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+.pack{position:relative;text-align:center;padding:20px 10px 12px;cursor:pointer;transition:transform .18s,box-shadow .2s;border-radius:22px}
+.pack:active{transform:scale(.97)}
+.pack .coins{height:44px;display:flex;justify-content:center;align-items:center;margin-bottom:6px}
+.pack .coins .coin{margin:0 -7px;box-shadow:0 0 0 2px var(--surface),inset 0 -2px 0 rgba(120,60,0,.22)}
+.pack .n{font-size:23px;font-weight:900;letter-spacing:-.3px}
+.pack .n small{font-size:12px;color:var(--muted);font-weight:600}
+.pack .bonus{font-size:11.5px;color:var(--ok);font-weight:700;min-height:20px;margin-top:2px}
+.pack .price{margin-top:10px;font-weight:800;font-size:14px;background:var(--surface-2);border-radius:13px;padding:9px}
+.pack.hot{border:2px solid var(--p);box-shadow:0 12px 30px rgba(99,82,245,.18)}
+.pack.hot .price{background:var(--grad);color:#fff}
+.badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:11px;font-weight:800;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.badge.gold{background:linear-gradient(135deg,#f6b73c,#e8830c)}
+.pack.wide{grid-column:1/-1;display:flex;align-items:center;gap:14px;text-align:right;padding:18px}
+.pack.wide .coins{margin:0;width:76px}
+.pack.wide .price{margin:0;padding:10px 14px}
+
+.tx{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.tx:first-child{border-top:0;padding-top:2px}
+.tx:last-child{padding-bottom:0}
+.t-ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none}
+.tx b{font-size:13.5px;display:block;font-weight:700}
+.tx small{font-size:11.5px;color:var(--muted)}
+.amt{font-weight:800;font-size:14px;direction:ltr;unicode-bidi:isolate}
+.amt.p{color:var(--ok)}.amt.n{color:var(--bad)}
+
+/* profile */
+.prof{display:flex;align-items:center;gap:14px}
+.prof .avatar{width:64px;height:64px;border-radius:22px;font-size:24px}
+.lvl{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:999px;background:linear-gradient(135deg,#e9edf5,#cfd6e4);color:#3c4660;margin-top:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{background:var(--surface-2);border-radius:15px;padding:11px 4px;text-align:center}
+.stat b{display:block;font-size:16px;font-weight:900}
+.stat small{font-size:11px;color:var(--muted)}
+.ref{background:linear-gradient(135deg,rgba(123,92,255,.12),rgba(20,184,166,.12));border:1px solid var(--line)}
+.ref-code{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border:1.5px dashed var(--p);border-radius:15px;padding:8px 8px 8px 14px;margin-top:14px}
+.ref-code b{direction:ltr;font-weight:900;letter-spacing:2px;font-size:16px}
+.list .li{display:flex;align-items:center;gap:12px;padding:14px 2px;border-top:1px solid var(--line);cursor:pointer;color:var(--text);text-decoration:none}
+.list .li:first-child{border-top:0;padding-top:4px}
+.list .li:last-child{padding-bottom:4px}
+.li>.ic{color:var(--muted)}
+.li span{flex:1;font-size:14px;font-weight:600}
+.li .chev{color:var(--muted);width:18px;height:18px}
+.switch{width:48px;height:29px;border-radius:999px;background:var(--line);position:relative;transition:background-color .3s;flex:none}
+.switch::after{content:"";position:absolute;top:3px;right:3px;width:23px;height:23px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .35s cubic-bezier(.3,.9,.3,1.2)}
+.switch.on{background:var(--p)}
+.switch.on::after{transform:translateX(-19px)}
+
+/* tab bar */
+.tabbar{position:absolute;left:12px;right:12px;bottom:14px;height:72px;border-radius:26px;background:var(--surface);background:color-mix(in srgb,var(--surface) 80%,transparent);backdrop-filter:blur(20px) saturate(1.7);-webkit-backdrop-filter:blur(20px) saturate(1.7);border:1px solid var(--line);box-shadow:0 14px 34px rgba(20,24,70,.16);display:flex;align-items:center;padding:0 4px;z-index:20}
+.tab{flex:1;border:0;background:none;font-size:11px;font-weight:700;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 0;transition:color .25s;position:relative}
+.tab .ic{transition:transform .35s cubic-bezier(.3,.9,.3,1.3)}
+.tab.on{color:var(--p)}
+.tab.on .ic{transform:translateY(-2px) scale(1.08)}
+.tab.on::after{content:"";position:absolute;bottom:0;width:5px;height:5px;border-radius:50%;background:var(--p)}
+.tab.fab .fw{width:58px;height:58px;border-radius:20px;background:var(--grad);display:grid;place-items:center;color:#fff;margin-top:-38px;box-shadow:0 12px 24px rgba(84,96,255,.42);border:4px solid var(--bg);transition:transform .25s}
+.tab.fab:active .fw{transform:scale(.92)}
+.tab.fab.on::after{display:none}
+
+/* sheet + toast */
+.sheet-bg{position:absolute;inset:0;background:rgba(10,12,30,.42);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .35s;z-index:40}
+.sheet-bg.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-radius:30px 30px 0 0;padding:10px 20px 28px;transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.9,.2,1);z-index:41;max-height:88%;overflow-y:auto;scrollbar-width:none}
+.sheet.on{transform:none}
+.grab{width:44px;height:5px;border-radius:9px;background:var(--line);margin:0 auto 18px}
+.sheet h4{font-size:19px;font-weight:900;text-align:center}
+.sheet p.c{color:var(--muted);text-align:center;font-size:13.5px;line-height:1.95;margin:8px 0 18px}
+.big-ic{width:76px;height:76px;border-radius:26px;display:grid;place-items:center;margin:4px auto 14px}
+.opt{display:flex;align-items:center;gap:12px;padding:14px;border:1.5px solid var(--line);border-radius:16px;margin-top:10px;cursor:pointer;transition:border-color .2s,background-color .2s}
+.opt.on{border-color:var(--p);background:var(--p-soft)}
+.opt .rd{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center}
+.opt.on .rd{border-color:var(--p)}
+.opt.on .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--p)}
+.opt b{font-size:14px;display:block}
+.opt small{font-size:11.5px;color:var(--muted)}
+.sheet .acts{display:flex;gap:10px;margin-top:18px}
+.sheet .acts .btn{flex:1}
+.rules{font-size:13px;line-height:2.1;color:var(--muted);padding-right:18px;margin-top:12px}
+.rules li{margin-bottom:6px}
+.notif{display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--line)}
+.notif:first-of-type{border-top:0}
+.notif b{font-size:13.5px;display:block}
+.notif small{font-size:12px;color:var(--muted);line-height:1.8}
+.toast{position:absolute;bottom:102px;left:50%;transform:translate(-50%,16px) scale(.96);background:#14162b;color:#fff;padding:11px 16px;border-radius:16px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .3s,transform .4s cubic-bezier(.2,.9,.2,1.2);z-index:90;display:flex;gap:8px;align-items:center;box-shadow:0 12px 30px rgba(0,0,0,.25);width:max-content;max-width:calc(100% - 32px);line-height:1.7}
+.app[data-theme=dark] .toast{background:#eef0ff;color:#14162b}
+.toast.on{opacity:1;transform:translate(-50%,0) scale(1)}
+.toast .ic{color:#4ade80}
+
+.splash{position:absolute;inset:0;z-index:100;background:var(--grad);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;transition:opacity .5s,visibility .5s}
+.splash svg{width:84px;height:84px;animation:pop .7s cubic-bezier(.3,1.5,.5,1)}
+.splash b{font-size:30px;font-weight:900;animation:rise .6s .15s both}
+.splash small{opacity:.85;font-size:14px;animation:rise .6s .25s both}
+.splash.out{opacity:0;visibility:hidden}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+
+@media (max-width:560px){
+  body{background:var(--bg)}
+  .stage{padding:0;display:block;min-height:0;background:none}
+  .intro{display:none}
+  .device{width:100%;height:100vh;height:100dvh;min-height:0;border-radius:0;padding:0;background:none;box-shadow:none}
+  .device::before{display:none}
+  .app{border-radius:0}
+  .status{display:none}
+  .top{padding-top:calc(12px + env(safe-area-inset-top))}
+  .tabbar{bottom:calc(10px + env(safe-area-inset-bottom))}
+  .sheet{padding-bottom:calc(26px + env(safe-area-inset-bottom))}
+  .toast{bottom:calc(98px + env(safe-area-inset-bottom))}
+}
+@media (max-width:1000px) and (min-width:561px){.intro{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <section class="intro">
+    <div class="brand"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5cff"/><stop offset=".55" stop-color="#4f74ff"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs><rect width="48" height="48" rx="15" fill="url(#lg0)"/><circle cx="19" cy="24" r="8.2" fill="none" stroke="#fff" stroke-width="3.6"/><circle cx="29" cy="24" r="8.2" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3.6"/></svg>پیوند</div>
+    <h1>رشد <em>واقعی</em> کانال ایتا، با سکه‌ای که خودت جمع می‌کنی</h1>
+    <p>کاربران واقعی در کانال‌ها عضو می‌شوند و پست‌ها را می‌بینند، سکه می‌گیرند و با آن برای کانال خودشان ممبر و بازدید سفارش می‌دهند. شفاف، امن و منصفانه.</p>
+    <ul class="points">
+      <li><svg class="ic sm" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/></svg>سکه‌گیری با عضویت و بازدید</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>سفارش ممبر و ویو</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>جایزه‌ی روزانه و مأموریت</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>دعوت دوستان با پاداش</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>انتقال سکه بین کاربران</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>ضمانت جبران ریزش</li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-dark" href="admin.html"><svg class="ic sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>مشاهده‌ی پنل مدیریت</a>
+      <span class="btn btn-ghost" style="background:#fff">نسخه‌ی اندروید: بازار و مایکت</span>
+    </div>
+    <div class="demo-note"><svg class="ic xs" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>نسخه‌ی نمایشی رابط کاربری؛ داده‌ها ساختگی هستند. روی موبایل تمام‌صفحه باز می‌شود.</div>
+  </section>
+
+  <div class="device">
+    <div class="app" id="app">
+      <div class="splash" id="splash"><svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="15" fill="rgba(255,255,255,.16)"/><circle cx="19" cy="24" r="8.2" fill="none" stroke="#fff" stroke-width="3.6"/><circle cx="29" cy="24" r="8.2" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3.6"/></svg><b>پیوند</b><small>رشد واقعی کانال ایتا</small></div>
+      <div class="status"><span class="js-time">9:41</span><span class="r">
+        <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+        <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.3-1.4A10.3 10.3 0 0 0 8 .3 10.3 10.3 0 0 0 .7 3.2L2 4.6a8.4 8.4 0 0 1 6-2.4Zm0 3.7c1.3 0 2.5.5 3.4 1.3l1.3-1.4A6.7 6.7 0 0 0 8 4a6.7 6.7 0 0 0-4.7 1.8l1.3 1.4C5.5 6.4 6.7 5.9 8 5.9Zm0 3.6c.5 0 1 .2 1.3.5L8 11.6 6.7 10c.3-.3.8-.5 1.3-.5Z"/></svg>
+        <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="17" height="9" rx="2"/><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2Z" opacity=".45"/></svg></span></div>
+      <header class="top">
+        <div class="avatar">ن</div>
+        <div class="hello"><small class="js-greet">روز بخیر</small><b>کاربر نمونه</b></div>
+        <button class="coinpill" data-act="go" data-to="shop" aria-label="موجودی سکه"><i class="coin js-pillcoin"></i><span class="js-pill">۰</span></button>
+        <button class="iconbtn" data-act="notifs" aria-label="اعلان‌ها"><svg class="ic" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i class="dot"></i></button>
+      </header>
+      <main id="main">
+        <section class="screen on" id="s-home"></section>
+        <section class="screen" id="s-earn"></section>
+        <section class="screen" id="s-order"></section>
+        <section class="screen" id="s-shop"></section>
+        <section class="screen" id="s-profile"></section>
+      </main>
+      <nav class="tabbar" id="tabbar">
+        <button class="tab on" data-act="go" data-to="home"><svg class="ic" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>خانه</button>
+        <button class="tab" data-act="go" data-to="earn"><svg class="ic" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>سکه‌گیری</button>
+        <button class="tab fab" data-act="go" data-to="order" aria-label="ثبت سفارش"><span class="fw"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:2.4"><path d="M12 5v14M5 12h14"/></svg></span>سفارش</button>
+        <button class="tab" data-act="go" data-to="shop"><svg class="ic" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>فروشگاه</button>
+        <button class="tab" data-act="go" data-to="profile"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>پروفایل</button>
+      </nav>
+      <div class="sheet-bg" id="sheetbg" data-act="close"></div>
+      <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+      <div class="toast" id="toast"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const fa=n=>Number(n).toLocaleString('fa-IR');
+const faD=s=>String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const I={
+  home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+  coins:'<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  userplus:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  flag:'<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/>',
+  eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  copy:'<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  send:'<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',
+  share:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>',
+  moon:'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/>',
+  bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+  link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+  target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  zap:'<path d="M13 2 3 14h9l-1 8 10-12h-9z"/>',
+  headset:'<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>',
+  grid:'<rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/>',
+  chev:'<path d="m15 18-6-6 6-6"/>',
+  refresh:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>',
+  card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+  phone:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>',
+  tag:'<path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.41 0l8.6-8.6a1 1 0 0 0 0-1.41z"/><circle cx="7" cy="7" r="1.5"/>',
+  info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
+  trend:'<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+  star:'<path d="M12 3l2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/>',
+  logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>'
+};
+const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
+const coin=(c='')=>`<i class="coin ${c}"></i>`;
+const GR=[['#7c5cff','#4f74ff'],['#fb923c','#f43f5e'],['#10b981','#0ea5a4'],['#38bdf8','#6366f1'],['#fbbf24','#f97316'],['#f472b6','#a855f7'],['#4ade80','#16a34a'],['#94a3b8','#475569']];
+const av=(name,i,c='')=>`<div class="ch-av ${c}" style="background:linear-gradient(135deg,${GR[i%8][0]},${GR[i%8][1]})">${name.replace(/^@/,'').trim()[0]}</div>`;
+const plus=n=>`<span class="ltr">+${fa(n)}</span>`;
+
+/* ---------- state (demo data) ---------- */
+let saved={};try{saved=JSON.parse(localStorage.getItem('pv-demo')||'{}')}catch(e){}
+const S={coins:4860,pending:36,done:35,limit:100,mt:6,streak:3,claimed:false,invites:4,earned:8420,spent:7180,
+  em:0,om:0,cat:'همه',qty:500,posts:1,link:'',pay:0,disc:0,theme:saved.theme||'light',notif:true,mclaimed:{2:true},
+  orders:[
+    {id:2391,name:'دنیای عکاسی',type:'member',qty:1000,done:640,st:'run'},
+    {id:2384,name:'دنیای عکاسی',type:'view',qty:2000,done:2000,st:'done'}],
+  hist:[
+    {t:'عضویت در «فناوری روز»',a:4,d:'۱۲ دقیقه پیش',k:'earn'},
+    {t:'جایزه‌ی روزانه‌ی روز سوم',a:20,d:'امروز، ۸:۱۵',k:'gift'},
+    {t:'سفارش ۱٬۰۰۰ ممبر',a:-5000,d:'دیروز',k:'order'},
+    {t:'خرید بسته‌ی ۳٬۰۰۰ سکه',a:3600,d:'دیروز',k:'buy'},
+    {t:'پاداش دعوت «مریم»',a:100,d:'۲ روز پیش',k:'ref'},
+    {t:'انتقال به کاربر ۵۱۲۰۴',a:-200,d:'۳ روز پیش',k:'send'}]};
+const CATS=['همه','خبری','آموزشی','سبک زندگی','فروشگاهی','سرگرمی','آشپزی'];
+let TASKS=[
+  {id:1,name:'آشپزی با مهتاب',cat:'آشپزی',members:18400,reward:4},
+  {id:2,name:'فناوری روز',cat:'خبری',members:52300,reward:4},
+  {id:3,name:'کتاب‌خوان',cat:'آموزشی',members:9100,reward:5},
+  {id:4,name:'زبان انگلیسی در ۵ دقیقه',cat:'آموزشی',members:31700,reward:4},
+  {id:5,name:'دکوراسیون خانه',cat:'سبک زندگی',members:12600,reward:5},
+  {id:6,name:'سفرنامه ایران',cat:'سرگرمی',members:7800,reward:6},
+  {id:7,name:'بازار موبایل',cat:'فروشگاهی',members:24900,reward:4},
+  {id:8,name:'ورزش در خانه',cat:'سبک زندگی',members:15200,reward:5},
+  {id:9,name:'اخبار اقتصادی',cat:'خبری',members:40100,reward:4}];
+let VIEWS=[
+  {id:101,name:'فناوری روز',ago:'۸ دقیقه پیش',text:'پنج قابلیت تازه‌ی گوشی‌های امسال که شاید از آن‌ها خبر نداشته باشید؛ شماره‌ی سه واقعاً کاربردی است…',reward:1,secs:5},
+  {id:102,name:'آشپزی با مهتاب',ago:'۲۵ دقیقه پیش',text:'دستور کامل کیک خیس شکلاتی بدون فر، فقط با ۵ قلم مواد که در هر آشپزخانه‌ای پیدا می‌شود.',reward:1,secs:5},
+  {id:103,name:'سفرنامه ایران',ago:'۱ ساعت پیش',text:'روستای پلکانی ماسوله در پاییز؛ بهترین زمان سفر، اقامتگاه‌ها و هزینه‌ی تقریبی سفر دو روزه.',reward:1,secs:5},
+  {id:104,name:'اخبار اقتصادی',ago:'۲ ساعت پیش',text:'خلاصه‌ی بازار امروز در یک نگاه: طلا، سکه و شاخص بورس؛ همراه با نمودار هفتگی.',reward:1,secs:5}];
+const PACKS=[{c:500,b:0,p:29000},{c:1200,b:10,p:59000},{c:3000,b:20,p:139000,hot:'پرفروش‌ترین'},{c:7000,b:30,p:299000,gold:'به‌صرفه'},{c:15000,b:40,p:590000,wide:1}];
+const DAILY=[10,15,20,25,30,40,100];
+const MISSIONS=[
+  {t:'۱۰ کار امروز انجام بده',n:()=>S.mt,of:10,r:30,ic:'target',c:'#6352f5'},
+  {t:'یک دوست دعوت کن',n:()=>0,of:1,r:100,ic:'userplus',c:'#ec4899'},
+  {t:'اولین سفارش این هفته',n:()=>1,of:1,r:20,ic:'zap',c:'#0f9e8e'}];
+const RATE={member:5,view:1};
+
+/* ---------- helpers ---------- */
+function toast(msg,icn='check'){const t=$('#toast');t.innerHTML=ic(icn,'sm')+'<span>'+msg+'</span>';t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2400)}
+function openSheet(h){const s=$('#sheet');s.innerHTML='<div class="grab"></div>'+h;s.scrollTop=0;$('#sheetbg').classList.add('on');s.classList.add('on')}
+function closeSheet(){$('#sheet').classList.remove('on');$('#sheetbg').classList.remove('on')}
+function animNum(el,from,to,dur=750){if(!el)return;const t0=performance.now();const step=t=>{const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=fa(Math.round(from+(to-from)*e));if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+function setCoins(d){const f=S.coins;S.coins+=d;animNum($('.js-pill'),f,S.coins);$$('.js-bal').forEach(e=>animNum(e,f,S.coins));$$('.js-after').forEach(()=>updateCost())}
+function pulse(){$('.coinpill').animate([{transform:'scale(1)'},{transform:'scale(1.12)'},{transform:'scale(1)'}],{duration:380,easing:'cubic-bezier(.3,1.6,.5,1)'})}
+function fly(from,n=5,cb){const app=$('#app'),a=app.getBoundingClientRect(),f=from.getBoundingClientRect(),t=$('.js-pillcoin').getBoundingClientRect();
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){cb&&cb();return}
+  for(let k=0;k<n;k++){const c=document.createElement('i');c.className='coin fly';app.appendChild(c);
+    const x0=f.left-a.left+f.width/2-11+(Math.random()*60-30),y0=f.top-a.top+f.height/2-11,x1=t.left-a.left,y1=t.top-a.top,
+      mx=(x0+x1)/2+(Math.random()*90-45),my=Math.min(y0,y1)-40-Math.random()*50;
+    c.animate([{transform:`translate(${x0}px,${y0}px) scale(.4)`,opacity:0},{transform:`translate(${x0}px,${y0-26}px) scale(1.15)`,opacity:1,offset:.18},{transform:`translate(${mx}px,${my}px) scale(1)`,offset:.6},{transform:`translate(${x1}px,${y1}px) scale(.85)`,opacity:1}],
+      {duration:820,delay:k*55,easing:'cubic-bezier(.55,0,.35,1)',fill:'both'}).onfinish=()=>{c.remove();pulse();if(k===n-1&&cb)cb()}}}
+function addHist(t,a,k){S.hist.unshift({t,a,d:'همین الان',k})}
+function stChip(st){return st==='run'?'<span class="st st-run"><i></i>در حال انجام</span>':st==='done'?'<span class="st st-done">'+ic('check','xs')+'تکمیل شد</span>':'<span class="st st-q"><i></i>در صف شروع</span>'}
+const HK={earn:['coins','#6352f5'],gift:['gift','#e8830c'],order:['send','#e5484d'],buy:['bag','#119a4e'],ref:['userplus','#ec4899'],send:['send','#0ea5e9']};
+const txRow=h=>`<div class="tx"><div class="t-ic" style="background:${HK[h.k][1]}1c;color:${HK[h.k][1]}">${ic(HK[h.k][0],'sm')}</div><div class="grow"><b>${h.t}</b><small>${h.d}</small></div><span class="amt ${h.a>0?'p':'n'}">${h.a>0?'+':'−'}${fa(Math.abs(h.a))}</span></div>`;
+const ordItem=(o,i)=>`<div class="card ord-card" data-oid="${o.id}"><div class="ord">${av(o.name,i+3)}<div class="grow meta"><b>${o.name}</b><small>${o.type==='member'?'ممبر':'بازدید'}<i class="sep"></i>کد ${faD(o.id)}</small></div>${stChip(o.st)}</div>
+  <div class="bar"><i style="width:${o.done/o.qty*100}%"></i></div><div class="ord-f"><span class="js-prog">${fa(o.done)} از ${fa(o.qty)}</span><span>${o.type==='member'?'ضمانت ریزش ۳۰ روزه':'شروع حداکثر ۱ ساعت'}</span></div></div>`;
+
+/* ---------- screens ---------- */
+const R={
+home(){
+  const active=S.orders.filter(o=>o.st!=='done');
+  return `<div class="balance"><div class="lbl"><span>موجودی سکه</span><span class="chip-glass">${ic('star','xs')}سطح نقره‌ای</span></div>
+    <div class="amt">${coin('lg')}<span class="js-bal">${fa(S.coins)}</span></div>
+    <span class="chip-glass">${ic('clock','xs')}<span class="js-pend">${fa(S.pending)}</span> سکه تا ۲۴ ساعت دیگر قطعی می‌شود</span>
+    <div class="acts"><button class="btn btn-w" data-act="go" data-to="earn">${ic('coins','sm')}سکه بگیر</button><button class="btn btn-g" data-act="go" data-to="shop">${ic('bag','sm')}خرید سکه</button></div></div>
+  <div class="quick">${[['earn','coins','سکه‌گیری','#6352f5'],['order','plus','ثبت سفارش','#0f9e8e'],['transfer','send','انتقال سکه','#0ea5e9'],['invite','userplus','دعوت دوستان','#ec4899']]
+    .map(([a,i,t,c])=>`<button class="q" data-act="${a==='transfer'||a==='invite'?a:'go'}" data-to="${a}"><span class="qi" style="background:${c}1a;color:${c}">${ic(i)}</span>${t}</button>`).join('')}</div>
+  <div class="card sec"><div class="row-h"><div><h3>جایزه‌ی روزانه</h3><small>${fa(S.streak)} روز پشت سر هم وارد شده‌ای</small></div><span class="reward">${ic('gift','xs')}روز هفتم ${fa(100)}</span></div>
+    <div class="days">${DAILY.map((v,i)=>`<div class="day ${i<S.streak?'done':''} ${i===S.streak&&!S.claimed?'today':''} ${i===6?'big':''}">روز ${fa(i+1)}<b>${i<S.streak?ic('check','xs'):fa(v)}</b></div>`).join('')}</div>
+    <button class="btn ${S.claimed?'btn-ghost':'btn-p'} w100 js-claim" data-act="claim" ${S.claimed?'disabled':''}>${S.claimed?ic('check','sm')+'جایزه‌ی امروز را گرفتی؛ فردا برگرد':ic('gift','sm')+'دریافت '+fa(DAILY[S.streak])+' سکه‌ی امروز'}</button></div>
+  <div class="sec-h"><h3>مأموریت‌های امروز</h3><a data-act="go" data-to="earn">انجام کارها</a></div>
+  <div class="card">${MISSIONS.map((m,i)=>{const n=Math.min(m.n(),m.of),full=n>=m.of,cl=S.mclaimed[i];return `<div class="mission"><div class="m-ic" style="background:${m.c}1a;color:${m.c}">${ic(m.ic)}</div>
+    <div class="grow m-body"><div class="row-h"><b>${m.t}</b>${cl?'<span class="st st-done">'+ic('check','xs')+'گرفتی</span>':full?`<button class="btn btn-p mini" data-act="mclaim" data-i="${i}">دریافت ${fa(m.r)}</button>`:`<span class="reward">${plus(m.r)}${coin('xs')}</span>`}</div>
+    <div class="bar"><i style="width:${n/m.of*100}%"></i></div><small class="sub">${fa(n)} از ${fa(m.of)}</small></div></div>`}).join('')}</div>
+  <div class="sec-h"><h3>سفارش‌های فعال</h3><a data-act="go" data-to="order">همه</a></div>
+  ${active.length?active.map(ordItem).join(''):`<div class="card empty">${ic('send','lg')}<br>سفارش فعالی نداری.<br><button class="btn btn-s" data-act="go" data-to="order">ثبت اولین سفارش</button></div>`}
+  <div class="trust"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('shield')}ضمانت جبران ریزش</div><div>${ic('headset')}پشتیبانی همیشگی</div></div>`;
+},
+earn(){
+  const list=S.em===0?TASKS.filter(t=>S.cat==='همه'||t.cat===S.cat):VIEWS;
+  const body=list.length?list.map((t,i)=>S.em===0?taskCard(t,i):viewCard(t,i)).join(''):`<div class="card empty" style="margin-top:12px"><div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><b style="color:var(--text)">همه‌ی کارهای این بخش را انجام دادی!</b><br>کارهای تازه هر چند دقیقه اضافه می‌شوند.<br><button class="btn btn-s" style="margin-top:10px" data-act="refill">${ic('refresh','sm')}بارگذاری کارهای جدید</button></div>`;
+  return `<h2 class="title">سکه‌گیری</h2>
+  <div class="seg" data-i="${S.em}"><i class="thumb"></i><button class="${S.em===0?'on':''}" data-act="em" data-i="0">${ic('users','sm')}عضویت در کانال</button><button class="${S.em===1?'on':''}" data-act="em" data-i="1">${ic('eye','sm')}بازدید پست</button></div>
+  <div class="card limit"><div class="ring" style="--v:${S.done/S.limit*100}"><span class="js-done">${fa(S.done)}</span></div><div class="grow"><b>${fa(S.done)} از ${fa(S.limit)} کار امروز</b><small>سقف روزانه کیفیت اعضای کانال‌ها را بالا نگه می‌دارد و جلوی تقلب را می‌گیرد.</small></div></div>
+  ${S.em===0?`<div class="chips">${CATS.map(c=>`<button class="chip ${S.cat===c?'on':''}" data-act="cat" data-c="${c}">${c}</button>`).join('')}</div>`:''}
+  <div class="js-tasks">${body}</div>
+  <div class="note">${ic('info','sm')}<span>با زدن دکمه، کانال در اپلیکیشن رسمی ایتا باز می‌شود. بعد از عضویت برگرد و «بررسی کن» را بزن. سکه بعد از ۲۴ ساعت قطعی می‌شود و اگر از کانال خارج شوی کسر می‌شود.</span></div>`;
+},
+order(){
+  const m=S.om===0,min=m?50:100,max=m?5000:20000,step=m?50:100;
+  return `<h2 class="title">ثبت سفارش</h2>
+  <div class="seg" data-i="${S.om}"><i class="thumb"></i><button class="${m?'on':''}" data-act="om" data-i="0">${ic('users','sm')}ممبر کانال</button><button class="${!m?'on':''}" data-act="om" data-i="1">${ic('eye','sm')}بازدید پست</button></div>
+  <div class="field"><label>${m?'لینک یا آیدی کانال':'لینک کانال یا پست'}<span>کانال باید عمومی باشد</span></label>
+    <div class="inp js-inp">${ic('link','sm')}<input class="ltr-in" data-in="link" inputmode="url" autocomplete="off" placeholder="${m?'eitaa.com/mychannel':'eitaa.com/mychannel/125'}" value="${S.link}"></div><div class="js-prev">${prevHTML()}</div></div>
+  <div class="field"><label>تعداد ${m?'ممبر':'بازدید'}<span>حداقل ${fa(min)}، حداکثر ${fa(max)}</span></label>
+    <div class="card" style="padding:16px 16px 14px"><div class="qty"><b class="js-qty">${fa(S.qty)}</b><span>${m?'نفر':'بازدید'}</span></div>
+    <input type="range" class="range" data-in="qty" min="${min}" max="${max}" step="${step}" value="${S.qty}" style="--f:${(S.qty-min)/(max-min)*100}%" aria-label="تعداد">
+    <div class="chips nob" style="justify-content:center">${(m?[100,500,1000,2000]:[500,1000,5000,10000]).map(v=>`<button class="chip ${S.qty===v?'on':''}" data-act="preset" data-v="${v}">${fa(v)}</button>`).join('')}</div></div></div>
+  ${m?'':`<div class="field"><label>روی چند پست آخر؟<span>بازدید بین پست‌ها پخش می‌شود</span></label><div class="chips nob">${[1,3,5,10].map(p=>`<button class="chip ${S.posts===p?'on':''}" data-act="posts" data-v="${p}">${fa(p)} پست</button>`).join('')}</div></div>`}
+  <div class="guar"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('shield')}${m?'جبران ریزش ۳۰ روزه':'بازدید ماندگار'}</div><div>${ic('clock')}شروع زیر ۱ ساعت</div></div>
+  <div class="card sum"><div class="r"><span>هزینه‌ی هر ${m?'ممبر':'بازدید'}</span><b>${fa(RATE[m?'member':'view'])} ${coin('xs')}</b></div>
+    <div class="r"><span>تعداد</span><b class="js-q2">${fa(S.qty*(m?1:S.posts))}</b></div>
+    <div class="r js-afterrow"><span>موجودی بعد از سفارش</span><b class="js-after"></b></div>
+    <div class="r tot"><span>هزینه‌ی کل</span><b><span class="js-cost"></span>${coin()}</b></div></div>
+  <button class="btn btn-p w100 big sec js-submit" data-act="submit">${ic('send','sm')}ثبت سفارش</button>
+  <div class="sec-h"><h3>سفارش‌های من</h3><a>${fa(S.orders.length)} سفارش</a></div>
+  ${S.orders.map(ordItem).join('')}`;
+},
+shop(){
+  return `<h2 class="title">خرید سکه</h2>
+  <div class="shop-hero"><div class="stack">${coin('xl').replace('class="coin xl"','class="coin xl" style="right:0;top:8px"')}${coin('lg').replace('class="coin lg"','class="coin lg" style="left:0;top:0"')}${coin().replace('class="coin "','class="coin" style="left:8px;bottom:0"')}</div>
+    <div><b>هرچه بسته بزرگ‌تر، هدیه بیشتر</b><small>تا ۴۰٪ سکه‌ی هدیه. پرداخت امن، شارژ فوری.</small></div></div>
+  <div class="packs">${PACKS.map((p,i)=>{const tot=Math.round(p.c*(1+p.b/100)),n=Math.min(3,1+Math.floor(i/1.5));
+    const cs=Array.from({length:p.wide?4:n},(_,k)=>coin(k===0?'lg':'')).join('');
+    return p.wide?`<div class="card pack wide" data-act="pack" data-i="${i}"><span class="badge gold">بسته‌ی حرفه‌ای</span><div class="coins">${cs}</div><div class="grow"><div class="n">${fa(tot)} <small>سکه</small></div><div class="bonus">${ic('gift','xs')} ${fa(p.b)}٪ هدیه، ویژه‌ی کانال‌های بزرگ</div></div><div class="price">${fa(p.p)} <small>تومان</small></div></div>`
+    :`<div class="card pack ${p.hot?'hot':''}" data-act="pack" data-i="${i}">${p.hot?`<span class="badge">${p.hot}</span>`:p.gold?`<span class="badge gold">${p.gold}</span>`:''}<div class="coins">${cs}</div><div class="n">${fa(tot)} <small>سکه</small></div><div class="bonus">${p.b?`${fa(p.b)}٪ هدیه`:'شروع کار'}</div><div class="price">${fa(p.p)} <small>تومان</small></div></div>`}).join('')}</div>
+  <div class="sec-h"><h3>تراکنش‌های اخیر</h3><a data-act="go" data-to="profile">تاریخچه</a></div>
+  <div class="card">${S.hist.filter(h=>h.k==='buy'||h.k==='order').slice(0,4).map(txRow).join('')}</div>
+  <div class="note">${ic('shield','sm')}<span>در نسخه‌ی اندروید، پرداخت از طریق پرداخت درون‌برنامه‌ای بازار و مایکت انجام می‌شود و در نسخه‌ی وب از درگاه بانکی.</span></div>`;
+},
+profile(){
+  return `<div class="card prof"><div class="avatar">ن</div><div class="grow"><b style="font-size:17px">کاربر نمونه</b><div class="sub">شناسه‌ی کاربری: <span class="ltr">${faD('48213')}</span></div><span class="lvl">${ic('star','xs')}سطح نقره‌ای</span></div></div>
+  <div class="card sec"><div class="row-h"><h3>امتیاز اعتماد</h3><b style="color:var(--ok)">۹۲ از ۱۰۰</b></div><div class="bar"><i style="width:92%;background:linear-gradient(90deg,#14b8a6,#22c55e)"></i></div>
+    <small class="sub" style="display:block;margin-top:8px;line-height:1.8">با حفظ عضویت‌ها امتیازت بالا می‌رود؛ در سطح طلایی هر کار ۲۵٪ سکه‌ی بیشتر دارد.</small>
+    <div class="stats"><div class="stat"><b>${fa(S.earned)}</b><small>سکه‌ی جمع‌شده</small></div><div class="stat"><b>${fa(S.spent)}</b><small>سکه‌ی خرج‌شده</small></div><div class="stat"><b>${fa(S.invites)}</b><small>دوست دعوت‌شده</small></div></div></div>
+  <div class="card sec ref"><div class="row-h"><div><h3>دوستانت را دعوت کن</h3><small>برای هر دعوت ${fa(100)} سکه + ۱۰٪ از سکه‌گیری او</small></div>${ic('gift','lg')}</div>
+    <div class="ref-code"><b>PYV-48213</b><div style="display:flex;gap:6px"><button class="btn btn-s mini" data-act="copy">${ic('copy','sm')}کپی</button><button class="btn btn-p mini" data-act="share">${ic('share','sm')}ارسال</button></div></div></div>
+  <div class="card sec"><div class="row-h"><div><h3>انتقال سکه</h3><small>سکه را به حساب دوست یا همکارت بفرست</small></div><button class="btn btn-s" data-act="transfer">${ic('send','sm')}انتقال</button></div></div>
+  <div class="sec-h"><h3>گردش سکه</h3><a>${fa(S.hist.length)} تراکنش</a></div>
+  <div class="card">${S.hist.slice(0,6).map(txRow).join('')}</div>
+  <div class="card sec list">
+    <div class="li" data-act="theme">${ic('moon')}<span>حالت تیره</span><i class="switch ${S.theme==='dark'?'on':''}"></i></div>
+    <div class="li" data-act="notif">${ic('bell')}<span>اعلان کارهای جدید</span><i class="switch ${S.notif?'on':''}"></i></div>
+    <div class="li" data-act="support">${ic('headset')}<span>پشتیبانی</span>${ic('chev','chev')}</div>
+    <div class="li" data-act="rules">${ic('file')}<span>قوانین و حریم خصوصی</span>${ic('chev','chev')}</div>
+    <a class="li" href="admin.html">${ic('grid')}<span>پنل مدیریت (نمایشی)</span>${ic('chev','chev')}</a>
+    <div class="li" data-act="logout" style="color:var(--bad)">${ic('logout')}<span>خروج از حساب</span></div></div>
+  <p class="sub" style="text-align:center;margin-top:16px">پیوند، نسخه‌ی ۱٫۰ (نمایشی)</p>`;
+}};
+function taskCard(t,i){return `<div class="card task" data-tid="${t.id}"><div class="task-h">${av(t.name,i)}<div class="grow meta"><b>${t.name}</b><small>${t.cat}<i class="sep"></i>${fa(t.members)} عضو</small></div><span class="reward">${plus(t.reward)}${coin('xs')}</span></div>
+  <div class="task-acts"><button class="btn btn-p grow" data-act="join" data-id="${t.id}">${ic('link','sm')}عضو شو در ایتا</button><button class="btn btn-ghost" data-act="skip" data-id="${t.id}" aria-label="رد کردن">${ic('x','sm')}</button><button class="btn btn-ghost" data-act="report" data-id="${t.id}" aria-label="گزارش">${ic('flag','sm')}</button></div></div>`}
+function viewCard(v,i){return `<div class="card task" data-vid="${v.id}"><div class="task-h">${av(v.name,i+2)}<div class="grow meta"><b>${v.name}</b><small>پست تازه<i class="sep"></i>${v.ago}</small></div><span class="reward">${plus(v.reward)}${coin('xs')}</span></div>
+  <div class="post">${v.text}</div><div class="task-acts"><button class="btn btn-p grow" data-act="view" data-id="${v.id}">${ic('eye','sm')}مشاهده‌ی پست در ایتا</button><button class="btn btn-ghost" data-act="skipv" data-id="${v.id}" aria-label="رد کردن">${ic('x','sm')}</button></div></div>`}
+
+/* ---------- order helpers ---------- */
+function parseLink(v,member){v=v.trim();const m=v.match(/^(?:https?:\/\/)?(?:www\.)?eitaa\.com\/([A-Za-z][A-Za-z0-9_]{3,31})(?:\/(\d+))?\/?$/)||v.match(/^@([A-Za-z][A-Za-z0-9_]{3,31})$/);
+  if(!m)return null;if(!member&&!m[2]&&v.startsWith('@'))return {h:m[1],post:null};return {h:m[1],post:m[2]||null}}
+function prevHTML(){if(!S.link)return '';const p=parseLink(S.link,S.om===0);
+  if(!p)return `<small class="sub" style="display:block;margin-top:8px;color:var(--bad)">لینک را به شکل eitaa.com/نام‌کانال وارد کنید</small>`;
+  return `<div class="prev">${av(p.h,5)}<div class="grow"><b class="ltr">@${p.h}</b><small>${p.post?'پست شماره‌ی '+fa(p.post):'کانال عمومی'}<i class="sep"></i>${fa(1000+p.h.length*137)} عضو فعلی</small></div>${ic('check','sm')}</div>`}
+function costOf(){return S.qty*RATE[S.om===0?'member':'view']*(S.om===0?1:S.posts)}
+function updateCost(){const c=costOf(),after=S.coins-c,low=after<0;const e=$('.js-cost');if(!e)return;e.textContent=fa(c);
+  const a=$('.js-after');a.textContent=low?'کافی نیست':fa(after);$('.js-afterrow').classList.toggle('warn',low);
+  const q2=$('.js-q2');if(q2)q2.textContent=fa(S.qty*(S.om===0?1:S.posts));
+  const b=$('.js-submit');b.innerHTML=low?ic('bag','sm')+'خرید سکه و ثبت سفارش':ic('send','sm')+'ثبت سفارش'}
+
+/* ---------- navigation ---------- */
+let cur='home';
+function go(to){if(!R[to])return;cur=to;$$('.screen').forEach(s=>s.classList.toggle('on',s.id==='s-'+to));$('#s-'+to).innerHTML=R[to]();
+  $$('.tab').forEach(t=>t.classList.toggle('on',t.dataset.to===to));$('#main').scrollTop=0;if(to==='order')updateCost()}
+function rerender(){$('#s-'+cur).innerHTML=R[cur]();if(cur==='order')updateCost()}
+function collapse(card,cb){card.style.maxHeight=card.scrollHeight+'px';card.offsetHeight;card.classList.add('gone');setTimeout(()=>{card.remove();cb&&cb()},520)}
+function afterTask(){if(!$('.js-tasks .task')){rerender()}}
+
+/* ---------- actions ---------- */
+const A={
+  go:el=>go(el.dataset.to),
+  close:closeSheet,
+  claim(el){const v=DAILY[S.streak];el.disabled=true;fly(el,6,()=>{setCoins(v)});S.streak++;S.claimed=true;addHist('جایزه‌ی روزانه‌ی روز '+fa(S.streak),v,'gift');toast(`${fa(v)} سکه‌ی جایزه‌ی امروز اضافه شد`,'gift');setTimeout(rerender,1100)},
+  mclaim(el){const m=MISSIONS[+el.dataset.i];S.mclaimed[el.dataset.i]=true;fly(el,5,()=>setCoins(m.r));addHist('مأموریت: '+m.t,m.r,'gift');toast('پاداش مأموریت دریافت شد','gift');setTimeout(rerender,1000)},
+  em:el=>{S.em=+el.dataset.i;rerender()},
+  om:el=>{S.om=+el.dataset.i;S.qty=S.om===0?500:1000;S.link='';S.posts=1;rerender()},
+  cat:el=>{S.cat=el.dataset.c;rerender()},
+  join(el){const id=el.dataset.id,acts=el.closest('.task-acts');acts.innerHTML=`<button class="btn btn-s grow" disabled><span class="spin"></span>در حال باز کردن ایتا…</button>`;
+    setTimeout(()=>{acts.innerHTML=`<button class="btn btn-ok grow" data-act="verify" data-id="${id}">${ic('check','sm')}عضو شدم، بررسی کن</button><button class="btn btn-ghost" data-act="join" data-id="${id}" aria-label="باز کردن دوباره">${ic('refresh','sm')}</button>`;toast('کانال در ایتا باز شد؛ بعد از عضویت برگرد','link')},1000)},
+  verify(el){const id=+el.dataset.id,t=TASKS.find(x=>x.id===id),card=el.closest('.task'),acts=el.closest('.task-acts');
+    acts.innerHTML=`<button class="btn btn-s grow" disabled><span class="spin"></span>در حال بررسی عضویت…</button>`;
+    setTimeout(()=>{acts.outerHTML=`<div class="ok-line">${ic('check','sm')}عضویت تأیید شد؛ ${fa(t.reward)} سکه اضافه شد</div>`;const ok=card.querySelector('.ok-line');
+      fly(ok,4,()=>{setCoins(t.reward);S.pending+=t.reward});S.earned+=t.reward;done1();addHist(`عضویت در «${t.name}»`,t.reward,'earn');
+      TASKS=TASKS.filter(x=>x.id!==id);setTimeout(()=>collapse(card,afterTask),1500)},1300)},
+  skip(el){const id=+el.dataset.id;TASKS=TASKS.filter(x=>x.id!==id);collapse(el.closest('.task'),afterTask);toast('این کانال دیگر نمایش داده نمی‌شود','x')},
+  skipv(el){const id=+el.dataset.id;VIEWS=VIEWS.filter(x=>x.id!==id);collapse(el.closest('.task'),afterTask)},
+  view(el){const id=+el.dataset.id,v=VIEWS.find(x=>x.id===id),card=el.closest('.task'),acts=el.closest('.task-acts');
+    acts.outerHTML=`<div class="vwait"><div class="bar"><i></i></div><small><span class="spin"></span>پست در ایتا باز شد، در حال ثبت بازدید…</small></div>`;
+    const bar=card.querySelector('.vwait .bar i');bar.style.transition=`width ${v.secs}s linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width='100%'));
+    setTimeout(()=>{card.querySelector('.vwait').outerHTML=`<div class="ok-line">${ic('check','sm')}بازدید ثبت شد؛ ${fa(v.reward)} سکه اضافه شد</div>`;
+      fly(card.querySelector('.ok-line'),2,()=>{setCoins(v.reward);S.pending+=v.reward});done1();addHist(`بازدید پست «${v.name}»`,v.reward,'earn');
+      VIEWS=VIEWS.filter(x=>x.id!==id);setTimeout(()=>collapse(card,afterTask),1400)},v.secs*1000+100)},
+  report(el){const t=TASKS.find(x=>x.id===+el.dataset.id);openSheet(`<div class="big-ic" style="background:var(--bad-soft);color:var(--bad)">${ic('flag','lg')}</div><h4>گزارش کانال «${t.name}»</h4><p class="c">مشکل این کانال چیست؟ گزارش شما بدون نام بررسی می‌شود.</p>
+    ${['محتوای نامناسب یا غیرقانونی','کانال جعلی یا کلاهبرداری','لینک خراب است یا کانال خصوصی است','دلیل دیگر'].map((r,i)=>`<div class="opt ${i===0?'on':''}" data-act="pick"><i class="rd"></i><div class="grow"><b>${r}</b></div></div>`).join('')}
+    <div class="acts"><button class="btn btn-ghost" data-act="close">انصراف</button><button class="btn btn-dark" data-act="sendreport" data-id="${t.id}">ارسال گزارش</button></div>`)},
+  pick(el){el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o===el));if(el.dataset.pay!==undefined){S.pay=+el.dataset.pay}},
+  sendreport(el){closeSheet();const id=+el.dataset.id;TASKS=TASKS.filter(x=>x.id!==id);const c=$(`[data-tid="${id}"]`);c&&collapse(c,afterTask);toast('گزارش ثبت شد؛ ممنون از همراهی‌ات','flag')},
+  refill(){TASKS=[{id:21,name:'عکاسی با موبایل',cat:'آموزشی',members:11200,reward:5},{id:22,name:'خبر فوری',cat:'خبری',members:61800,reward:4},{id:23,name:'گل و گیاه آپارتمانی',cat:'سبک زندگی',members:8700,reward:6},{id:24,name:'پوشاک زمستانه',cat:'فروشگاهی',members:19300,reward:4}];
+    VIEWS=[{id:121,name:'خبر فوری',ago:'۳ دقیقه پیش',text:'پیش‌بینی هوای آخر هفته: بارش برف در استان‌های شمال غربی و کاهش دما در تهران.',reward:1,secs:5},{id:122,name:'عکاسی با موبایل',ago:'۱۵ دقیقه پیش',text:'سه تنظیم ساده‌ی دوربین گوشی که عکس‌های شب را چند برابر بهتر می‌کند.',reward:1,secs:5}];S.cat='همه';rerender();toast('کارهای تازه بارگذاری شد','refresh')},
+  preset(el){S.qty=+el.dataset.v;rerender()},
+  posts(el){S.posts=+el.dataset.v;rerender()},
+  submit(el){const m=S.om===0,p=parseLink(S.link,m),inp=$('.js-inp');
+    if(!p){inp.classList.remove('shake');inp.offsetWidth;inp.classList.add('shake');toast(S.link?'لینک وارد شده معتبر نیست':'اول لینک کانال را وارد کن','link');return}
+    const c=costOf();if(c>S.coins){openSheet(`<div class="big-ic" style="background:var(--gold-soft);color:var(--gold-ink)">${coin('xl')}</div><h4>سکه کافی نیست</h4><p class="c">برای این سفارش ${fa(c)} سکه لازم داری و ${fa(S.coins-c<0?c-S.coins:0)} سکه کم داری. با بسته‌های فروشگاه تا ۴۰٪ هدیه می‌گیری.</p><div class="acts"><button class="btn btn-ghost" data-act="close">بعداً</button><button class="btn btn-p" data-act="toshop">${ic('bag','sm')}رفتن به فروشگاه</button></div>`);return}
+    el.disabled=true;el.innerHTML='<span class="spin"></span>در حال ثبت سفارش…';
+    setTimeout(()=>{const o={id:2392+S.orders.length,name:'@'+p.h,type:m?'member':'view',qty:S.qty*(m?1:S.posts),done:0,st:'q'};S.orders.unshift(o);setCoins(-c);S.spent+=c;
+      addHist(`سفارش ${fa(o.qty)} ${m?'ممبر':'بازدید'}`,-c,'order');
+      openSheet(`<div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><h4>سفارش ثبت شد</h4><p class="c">${fa(o.qty)} ${m?'ممبر':'بازدید'} برای <span class="ltr">@${p.h}</span> در صف قرار گرفت و حداکثر تا یک ساعت دیگر شروع می‌شود. پیشرفت را از «سفارش‌های من» دنبال کن.</p>
+        <div class="card" style="box-shadow:none"><div class="sum" style="margin:0"><div class="r"><span>کد سفارش</span><b>${faD(o.id)}</b></div><div class="r"><span>سکه‌ی کسر شده</span><b>${fa(c)} ${coin('xs')}</b></div><div class="r"><span>ضمانت</span><b>${m?'جبران ریزش ۳۰ روزه':'بازدید ماندگار'}</b></div></div></div>
+        <div class="acts"><button class="btn btn-p" data-act="close">عالی، متوجه شدم</button></div>`);
+      S.link='';rerender();setTimeout(()=>{o.st='run';o.done=Math.round(o.qty*.04);syncOrder(o)},4000)},1100)},
+  toshop(){closeSheet();go('shop')},
+  pack(el){const p=PACKS[+el.dataset.i];S.pay=0;S.disc=0;payView(p)},
+  applycode(el){const v=($('.js-code')||{}).value||'';const p=PACKS[+el.dataset.i];if(v.trim().toUpperCase()==='PEYVAND10'){S.disc=10;payView(p);toast('کد تخفیف ۱۰٪ اعمال شد','tag')}else{toast('این کد تخفیف معتبر نیست','x')}},
+  pay(el){const p=PACKS[+el.dataset.i],tot=Math.round(p.c*(1+p.b/100));el.disabled=true;el.innerHTML='<span class="spin"></span>در حال اتصال به '+(S.pay===0?'پرداخت درون‌برنامه‌ای':'درگاه بانکی')+'…';
+    setTimeout(()=>{openSheet(`<div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><h4>پرداخت موفق</h4><p class="c">${fa(tot)} سکه به حسابت اضافه شد. کد پیگیری: <span class="ltr">${faD('7381'+Math.floor(Math.random()*90000+10000))}</span></p><div class="acts"><button class="btn btn-p" data-act="toorder">${ic('send','sm')}برو برای ثبت سفارش</button></div>`);
+      fly($('.sheet .big-ic'),8,()=>setCoins(tot));addHist(`خرید بسته‌ی ${fa(p.c)} سکه`,tot,'buy');},1500)},
+  toorder(){closeSheet();go('order')},
+  copy(){try{navigator.clipboard.writeText('PYV-48213')}catch(e){}toast('کد دعوت کپی شد','copy')},
+  share(){const txt='با کد PYV-48213 در پیوند ثبت‌نام کن و ۵۰ سکه‌ی هدیه بگیر!';if(navigator.share){navigator.share({text:txt}).catch(()=>{})}else{try{navigator.clipboard.writeText(txt)}catch(e){}toast('متن دعوت کپی شد','share')}},
+  invite(){openSheet(`<div class="big-ic" style="background:rgba(236,72,153,.12);color:#ec4899">${ic('userplus','lg')}</div><h4>دعوت دوستان</h4><p class="c">برای هر دوستی که با کد تو ثبت‌نام کند ${fa(100)} سکه می‌گیری، به‌علاوه‌ی ۱۰٪ از هر سکه‌ای که جمع می‌کند. دوستت هم ۵۰ سکه‌ی هدیه می‌گیرد.</p>
+    <div class="ref-code" style="margin-top:0"><b>PYV-48213</b><button class="btn btn-s mini" data-act="copy">${ic('copy','sm')}کپی</button></div>
+    <div class="stats"><div class="stat"><b>${fa(S.invites)}</b><small>دعوت موفق</small></div><div class="stat"><b>${fa(400)}</b><small>سکه‌ی پاداش</small></div><div class="stat"><b>${fa(186)}</b><small>سهم ۱۰٪</small></div></div>
+    <div class="acts"><button class="btn btn-p" data-act="share">${ic('share','sm')}ارسال لینک دعوت</button></div>`)},
+  transfer(){openSheet(`<div class="big-ic" style="background:rgba(14,165,233,.12);color:#0ea5e9">${ic('send','lg')}</div><h4>انتقال سکه</h4><p class="c">موجودی فعلی: ${fa(S.coins)} سکه. انتقال فوری و بدون کارمزد است.</p>
+    <div class="field" style="margin-top:0"><label>شناسه‌ی کاربری گیرنده</label><div class="inp">${ic('users','sm')}<input class="ltr-in js-tid" inputmode="numeric" placeholder="51204"></div></div>
+    <div class="field"><label>تعداد سکه</label><div class="inp">${coin('xs')}<input class="ltr-in js-tam" inputmode="numeric" placeholder="200"></div></div>
+    <div class="acts"><button class="btn btn-ghost" data-act="close">انصراف</button><button class="btn btn-p" data-act="dotransfer">${ic('send','sm')}انتقال</button></div>`)},
+  dotransfer(el){const id=$('.js-tid').value.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).trim(),n=parseInt($('.js-tam').value.replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)),10);
+    if(!/^\d{4,8}$/.test(id)){toast('شناسه‌ی گیرنده را درست وارد کن','x');return}
+    if(!n||n<10){toast('حداقل انتقال ۱۰ سکه است','x');return}
+    if(n>S.coins){toast('موجودی کافی نیست','x');return}
+    el.disabled=true;el.innerHTML='<span class="spin"></span>در حال انتقال…';
+    setTimeout(()=>{setCoins(-n);addHist('انتقال به کاربر '+faD(id),-n,'send');openSheet(`<div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><h4>انتقال انجام شد</h4><p class="c">${fa(n)} سکه به کاربر <span class="ltr">${faD(id)}</span> منتقل شد.</p><div class="acts"><button class="btn btn-p" data-act="close">باشه</button></div>`);if(cur==='profile')rerender()},1100)},
+  theme(){S.theme=S.theme==='dark'?'light':'dark';$('#app').dataset.theme=S.theme;try{localStorage.setItem('pv-demo',JSON.stringify({theme:S.theme}))}catch(e){}$('.li[data-act=theme] .switch').classList.toggle('on',S.theme==='dark')},
+  notif(el){S.notif=!S.notif;el.querySelector('.switch').classList.toggle('on',S.notif);toast(S.notif?'اعلان کارهای جدید روشن شد':'اعلان‌ها خاموش شد','bell')},
+  notifs(el){el.querySelector('.dot')&&el.querySelector('.dot').remove();openSheet(`<h4>اعلان‌ها</h4><div style="margin-top:14px">
+    ${[['send','#6352f5','سفارش «دنیای عکاسی» به ۶۰٪ رسید','۱۰ دقیقه پیش'],['gift','#e8830c','جایزه‌ی روزانه‌ات آماده است','امروز، ۸:۰۰'],['coins','#119a4e','۳۶ سکه‌ی دیروز قطعی شد','امروز، ۰۰:۱۰'],['tag','#ec4899','تخفیف آخر هفته: با کد PEYVAND10، ۱۰٪ تخفیف بگیر','دیروز']]
+    .map(([i,c,t,d])=>`<div class="notif"><div class="t-ic" style="background:${c}1c;color:${c}">${ic(i,'sm')}</div><div class="grow"><b>${t}</b><small>${d}</small></div></div>`).join('')}</div><div class="acts"><button class="btn btn-ghost" data-act="close">بستن</button></div>`)},
+  support(){openSheet(`<div class="big-ic" style="background:var(--p-soft);color:var(--p)">${ic('headset','lg')}</div><h4>پشتیبانی</h4><p class="c">سؤال یا مشکلت را بنویس؛ معمولاً در کمتر از یک ساعت جواب می‌دهیم.</p>
+    ${['مشکل در سفارش','مشکل در پرداخت','سکه‌ی من ثبت نشد','پیشنهاد و انتقاد'].map((r,i)=>`<div class="opt ${i===0?'on':''}" data-act="pick"><i class="rd"></i><div class="grow"><b>${r}</b></div></div>`).join('')}
+    <div class="acts"><button class="btn btn-ghost" data-act="close">انصراف</button><button class="btn btn-p" data-act="ticket">ثبت تیکت</button></div>`)},
+  ticket(){closeSheet();toast('تیکت ثبت شد؛ کد پیگیری ۲۰۴۱۸','headset')},
+  rules(){openSheet(`<h4>قوانین و حریم خصوصی</h4><ol class="rules">
+    <li>هر کاربر فقط یک حساب در پیوند دارد؛ ساخت چند حساب باعث مسدود شدن می‌شود.</li>
+    <li>عضویت و بازدید فقط به‌صورت دستی و در اپلیکیشن رسمی ایتا انجام می‌شود. پیوند به حساب ایتای شما دسترسی ندارد.</li>
+    <li>سکه‌ی عضویت بعد از ۲۴ ساعت قطعی می‌شود؛ خروج از کانال باعث کسر سکه و کاهش امتیاز اعتماد می‌شود.</li>
+    <li>سفارش برای کانال‌های دارای محتوای غیرقانونی، غیراخلاقی یا کلاهبرداری پذیرفته نمی‌شود.</li>
+    <li>سکه ارزش ریالی ندارد و قابل تبدیل به پول نیست.</li>
+    <li>اطلاعات شما فقط برای ارائه‌ی خدمت استفاده می‌شود و در اختیار دیگران قرار نمی‌گیرد.</li></ol>
+    <div class="acts"><button class="btn btn-p" data-act="close">خواندم</button></div>`)},
+  logout(){toast('در نسخه‌ی نمایشی، خروج غیرفعال است','info')}
+};
+function payView(p){const tot=Math.round(p.c*(1+p.b/100)),price=Math.round(p.p*(1-S.disc/100)),i=PACKS.indexOf(p);
+  openSheet(`<div class="big-ic" style="background:var(--gold-soft)">${coin('xl')}</div><h4>${fa(tot)} سکه</h4><p class="c">${p.b?`شامل ${fa(Math.round(p.c*p.b/100))} سکه‌ی هدیه`:'بسته‌ی شروع'}</p>
+  <div class="opt ${S.pay===0?'on':''}" data-act="pick" data-pay="0"><i class="rd"></i><div class="grow"><b>پرداخت درون‌برنامه‌ای</b><small>بازار یا مایکت، بدون وارد کردن کارت</small></div>${ic('phone')}</div>
+  <div class="opt ${S.pay===1?'on':''}" data-act="pick" data-pay="1"><i class="rd"></i><div class="grow"><b>درگاه بانکی</b><small>همه‌ی کارت‌های عضو شتاب</small></div>${ic('card')}</div>
+  <div class="field"><label>کد تخفیف<span>برای امتحان: PEYVAND10</span></label><div class="inp">${ic('tag','sm')}<input class="ltr-in js-code" placeholder="CODE" value="${S.disc?'PEYVAND10':''}"><button class="btn btn-s mini" data-act="applycode" data-i="${i}">اعمال</button></div></div>
+  <div class="card sum" style="box-shadow:none">${S.disc?`<div class="r"><span>قیمت</span><b style="text-decoration:line-through;color:var(--muted)">${fa(p.p)} تومان</b></div><div class="r"><span>تخفیف</span><b style="color:var(--ok)">${fa(S.disc)}٪</b></div>`:''}<div class="r tot"><span>مبلغ قابل پرداخت</span><b>${fa(price)} <small style="font-size:12px;font-weight:600">تومان</small></b></div></div>
+  <div class="acts"><button class="btn btn-p big" data-act="pay" data-i="${i}">${ic('shield','sm')}پرداخت امن ${fa(price)} تومان</button></div>`)}
+function done1(){S.done++;S.mt++;const r=$('.ring');if(r){r.style.setProperty('--v',S.done/S.limit*100);$('.js-done').textContent=fa(S.done);r.parentElement.querySelector('b').textContent=`${fa(S.done)} از ${fa(S.limit)} کار امروز`}}
+function syncOrder(o){$$(`[data-oid="${o.id}"]`).forEach(c=>{c.querySelector('.bar i').style.width=o.done/o.qty*100+'%';c.querySelector('.js-prog').textContent=`${fa(o.done)} از ${fa(o.qty)}`;const ch=c.querySelector('.st');if(ch)ch.outerHTML=stChip(o.st)})}
+
+document.addEventListener('click',e=>{const el=e.target.closest('[data-act]');if(!el)return;const f=A[el.dataset.act];if(f){e.preventDefault();f(el,e)}});
+document.addEventListener('input',e=>{const k=e.target.dataset.in;if(!k)return;
+  if(k==='link'){S.link=e.target.value;$('.js-prev').innerHTML=prevHTML();$('.js-inp').classList.toggle('ok',!!parseLink(S.link,S.om===0))}
+  if(k==='qty'){const r=e.target;S.qty=+r.value;r.style.setProperty('--f',(r.value-r.min)/(r.max-r.min)*100+'%');$('.js-qty').textContent=fa(S.qty);$$('[data-act=preset]').forEach(c=>c.classList.toggle('on',+c.dataset.v===S.qty))}
+  updateCost()});
+
+/* live order progress */
+setInterval(()=>{S.orders.forEach(o=>{if(o.st!=='run')return;o.done=Math.min(o.qty,o.done+Math.ceil(o.qty*(.008+Math.random()*.02)));if(o.done>=o.qty){o.st='done';toast(`سفارش «${o.name}» تکمیل شد`)}syncOrder(o)})},2600);
+
+/* init */
+(function(){const app=$('#app');app.dataset.theme=S.theme;const h=new Date().getHours();$('.js-greet').textContent=h<12?'صبح بخیر':h<17?'روز بخیر':'عصر بخیر';
+  const tm=()=>{const d=new Date();$('.js-time').textContent=d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')};tm();setInterval(tm,30000);
+  $('.js-pill').textContent=fa(S.coins);go('home');setTimeout(()=>$('#splash').classList.add('out'),1100)})();
+</script>
+</body>
+</html>
