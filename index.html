@@ -165,6 +165,10 @@ main::-webkit-scrollbar{display:none}
 .seg button.on{color:#fff}
 .seg .thumb{position:absolute;top:4px;bottom:4px;right:4px;width:calc(50% - 4px);border-radius:13px;background:var(--grad);transition:transform .4s cubic-bezier(.3,.9,.25,1);box-shadow:0 6px 14px rgba(84,96,255,.3)}
 .seg[data-i="1"] .thumb{transform:translateX(-100%)}
+.seg.three .thumb{width:calc((100% - 8px)/3)}
+.seg[data-i="2"] .thumb{transform:translateX(-200%)}
+.seg.three button{font-size:13px;gap:5px;padding:11px 4px}
+.segr{font-size:11px;font-weight:800;opacity:.75}
 
 .limit{display:flex;align-items:center;gap:14px;margin-top:14px}
 .ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;flex:none;background:conic-gradient(var(--p) calc(var(--v)*1%),var(--surface-2) 0);transition:--v .6s}
@@ -372,14 +376,14 @@ main::-webkit-scrollbar{display:none}
   <section class="intro">
     <div class="brand"><svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b5cff"/><stop offset=".55" stop-color="#4f74ff"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs><rect width="48" height="48" rx="15" fill="url(#lg0)"/><circle cx="19" cy="24" r="8.2" fill="none" stroke="#fff" stroke-width="3.6"/><circle cx="29" cy="24" r="8.2" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="3.6"/></svg>پیوند</div>
     <h1>رشد <em>واقعی</em> کانال ایتا، با سکه‌ای که خودت جمع می‌کنی</h1>
-    <p>کاربران واقعی در کانال‌ها عضو می‌شوند و پست‌ها را می‌بینند، سکه می‌گیرند و با آن برای کانال خودشان ممبر و بازدید سفارش می‌دهند. شفاف، امن و منصفانه.</p>
+    <p>کاربران واقعی در کانال‌ها و گروه‌ها عضو می‌شوند و پست‌ها را می‌بینند، سکه می‌گیرند و با آن برای کانال و گروه خودشان ممبر و بازدید سفارش می‌دهند. شفاف، امن و منصفانه.</p>
     <ul class="points">
-      <li><svg class="ic sm" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/></svg>سکه‌گیری با عضویت و بازدید</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/></svg>سکه از کانال، گروه و بازدید</li>
       <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>سفارش ممبر و ویو</li>
       <li><svg class="ic sm" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>جایزه‌ی روزانه و مأموریت</li>
       <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>دعوت دوستان با پاداش</li>
       <li><svg class="ic sm" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>انتقال سکه بین کاربران</li>
-      <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>ضمانت جبران ریزش</li>
+      <li><svg class="ic sm" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>ضدتقلب و کاربر واقعی</li>
     </ul>
     <div class="cta">
       <a class="btn btn-dark" href="admin.html"><svg class="ic sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>مشاهده‌ی پنل مدیریت</a>
@@ -459,6 +463,7 @@ const I={
   info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/>',
   trend:'<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
   star:'<path d="M12 3l2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/>',
+  chat:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
   logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>'
 };
 const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
@@ -472,7 +477,8 @@ let saved={};try{saved=JSON.parse(localStorage.getItem('pv-demo')||'{}')}catch(e
 const S={coins:4860,pending:36,done:35,limit:100,mt:6,streak:3,claimed:false,invites:4,earned:8420,spent:7180,
   em:0,om:0,cat:'همه',qty:500,posts:1,link:'',pay:0,disc:0,theme:saved.theme||'light',notif:true,mclaimed:{2:true},
   orders:[
-    {id:2391,name:'دنیای عکاسی',type:'member',qty:1000,done:640,st:'run'},
+    {id:2391,name:'دنیای عکاسی',type:'channel',qty:1000,done:640,st:'run'},
+    {id:2388,name:'گروه عکاسان',type:'group',qty:300,done:115,st:'run'},
     {id:2384,name:'دنیای عکاسی',type:'view',qty:2000,done:2000,st:'done'}],
   hist:[
     {t:'عضویت در «فناوری روز»',a:4,d:'۱۲ دقیقه پیش',k:'earn'},
@@ -481,29 +487,39 @@ const S={coins:4860,pending:36,done:35,limit:100,mt:6,streak:3,claimed:false,inv
     {t:'خرید بسته‌ی ۳٬۰۰۰ سکه',a:3600,d:'دیروز',k:'buy'},
     {t:'پاداش دعوت «مریم»',a:100,d:'۲ روز پیش',k:'ref'},
     {t:'انتقال به کاربر ۵۱۲۰۴',a:-200,d:'۳ روز پیش',k:'send'}]};
-const CATS=['همه','خبری','آموزشی','سبک زندگی','فروشگاهی','سرگرمی','آشپزی'];
-let TASKS=[
-  {id:1,name:'آشپزی با مهتاب',cat:'آشپزی',members:18400,reward:4},
-  {id:2,name:'فناوری روز',cat:'خبری',members:52300,reward:4},
-  {id:3,name:'کتاب‌خوان',cat:'آموزشی',members:9100,reward:5},
-  {id:4,name:'زبان انگلیسی در ۵ دقیقه',cat:'آموزشی',members:31700,reward:4},
-  {id:5,name:'دکوراسیون خانه',cat:'سبک زندگی',members:12600,reward:5},
-  {id:6,name:'سفرنامه ایران',cat:'سرگرمی',members:7800,reward:6},
-  {id:7,name:'بازار موبایل',cat:'فروشگاهی',members:24900,reward:4},
-  {id:8,name:'ورزش در خانه',cat:'سبک زندگی',members:15200,reward:5},
-  {id:9,name:'اخبار اقتصادی',cat:'خبری',members:40100,reward:4}];
-let VIEWS=[
+const KL={channel:'کانال',group:'گروه',view:'پست'};
+const TL={channel:'ممبر کانال',group:'ممبر گروه',view:'بازدید'};
+const KINDS=['channel','group','view'];
+const P={
+ channel:[
+  {id:1,name:'آشپزی با مهتاب',members:18400,reward:5},
+  {id:2,name:'فناوری روز',members:52300,reward:5},
+  {id:3,name:'کتاب‌خوان',members:9100,reward:5},
+  {id:4,name:'زبان انگلیسی در ۵ دقیقه',members:31700,reward:5},
+  {id:5,name:'دکوراسیون خانه',members:12600,reward:5},
+  {id:6,name:'سفرنامه ایران',members:7800,reward:5},
+  {id:7,name:'بازار موبایل',members:24900,reward:5},
+  {id:8,name:'ورزش در خانه',members:15200,reward:5},
+  {id:9,name:'اخبار اقتصادی',members:40100,reward:5}],
+ group:[
+  {id:51,name:'گفت‌وگوی برنامه‌نویس‌ها',members:3400,reward:4},
+  {id:52,name:'مادران و کودکان',members:5100,reward:4},
+  {id:53,name:'بازار دست‌دوم',members:8900,reward:4},
+  {id:54,name:'حلقه‌ی کتاب‌خوانی',members:1900,reward:4},
+  {id:55,name:'هم‌سفر شو',members:2600,reward:4},
+  {id:56,name:'عکاسان آماتور',members:4300,reward:4}],
+ view:[
   {id:101,name:'فناوری روز',ago:'۸ دقیقه پیش',text:'پنج قابلیت تازه‌ی گوشی‌های امسال که شاید از آن‌ها خبر نداشته باشید؛ شماره‌ی سه واقعاً کاربردی است…',reward:1,secs:5},
   {id:102,name:'آشپزی با مهتاب',ago:'۲۵ دقیقه پیش',text:'دستور کامل کیک خیس شکلاتی بدون فر، فقط با ۵ قلم مواد که در هر آشپزخانه‌ای پیدا می‌شود.',reward:1,secs:5},
   {id:103,name:'سفرنامه ایران',ago:'۱ ساعت پیش',text:'روستای پلکانی ماسوله در پاییز؛ بهترین زمان سفر، اقامتگاه‌ها و هزینه‌ی تقریبی سفر دو روزه.',reward:1,secs:5},
-  {id:104,name:'اخبار اقتصادی',ago:'۲ ساعت پیش',text:'خلاصه‌ی بازار امروز در یک نگاه: طلا، سکه و شاخص بورس؛ همراه با نمودار هفتگی.',reward:1,secs:5}];
+  {id:104,name:'اخبار اقتصادی',ago:'۲ ساعت پیش',text:'خلاصه‌ی بازار امروز در یک نگاه: طلا، سکه و شاخص بورس؛ همراه با نمودار هفتگی.',reward:1,secs:5}]};
 const PACKS=[{c:500,b:0,p:29000},{c:1200,b:10,p:59000},{c:3000,b:20,p:139000,hot:'پرفروش‌ترین'},{c:7000,b:30,p:299000,gold:'به‌صرفه'},{c:15000,b:40,p:590000,wide:1}];
 const DAILY=[10,15,20,25,30,40,100];
 const MISSIONS=[
   {t:'۱۰ کار امروز انجام بده',n:()=>S.mt,of:10,r:30,ic:'target',c:'#6352f5'},
   {t:'یک دوست دعوت کن',n:()=>0,of:1,r:100,ic:'userplus',c:'#ec4899'},
   {t:'اولین سفارش این هفته',n:()=>1,of:1,r:20,ic:'zap',c:'#0f9e8e'}];
-const RATE={member:5,view:1};
+const RATE={channel:6,group:5,view:2};
 
 /* ---------- helpers ---------- */
 function toast(msg,icn='check'){const t=$('#toast');t.innerHTML=ic(icn,'sm')+'<span>'+msg+'</span>';t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2400)}
@@ -523,8 +539,8 @@ function addHist(t,a,k){S.hist.unshift({t,a,d:'همین الان',k})}
 function stChip(st){return st==='run'?'<span class="st st-run"><i></i>در حال انجام</span>':st==='done'?'<span class="st st-done">'+ic('check','xs')+'تکمیل شد</span>':'<span class="st st-q"><i></i>در صف شروع</span>'}
 const HK={earn:['coins','#6352f5'],gift:['gift','#e8830c'],order:['send','#e5484d'],buy:['bag','#119a4e'],ref:['userplus','#ec4899'],send:['send','#0ea5e9']};
 const txRow=h=>`<div class="tx"><div class="t-ic" style="background:${HK[h.k][1]}1c;color:${HK[h.k][1]}">${ic(HK[h.k][0],'sm')}</div><div class="grow"><b>${h.t}</b><small>${h.d}</small></div><span class="amt ${h.a>0?'p':'n'}">${h.a>0?'+':'−'}${fa(Math.abs(h.a))}</span></div>`;
-const ordItem=(o,i)=>`<div class="card ord-card" data-oid="${o.id}"><div class="ord">${av(o.name,i+3)}<div class="grow meta"><b>${o.name}</b><small>${o.type==='member'?'ممبر':'بازدید'}<i class="sep"></i>کد ${faD(o.id)}</small></div>${stChip(o.st)}</div>
-  <div class="bar"><i style="width:${o.done/o.qty*100}%"></i></div><div class="ord-f"><span class="js-prog">${fa(o.done)} از ${fa(o.qty)}</span><span>${o.type==='member'?'ضمانت ریزش ۳۰ روزه':'شروع حداکثر ۱ ساعت'}</span></div></div>`;
+const ordItem=(o,i)=>`<div class="card ord-card" data-oid="${o.id}"><div class="ord">${av(o.name,i+3)}<div class="grow meta"><b><bdi>${o.name}</bdi></b><small>${TL[o.type]}<i class="sep"></i>کد ${faD(o.id)}</small></div>${stChip(o.st)}</div>
+  <div class="bar"><i style="width:${o.done/o.qty*100}%"></i></div><div class="ord-f"><span class="js-prog">${fa(o.done)} از ${fa(o.qty)}</span><span>فقط کاربر واقعی</span></div></div>`;
 
 /* ---------- screens ---------- */
 const R={
@@ -545,34 +561,35 @@ home(){
     <div class="bar"><i style="width:${n/m.of*100}%"></i></div><small class="sub">${fa(n)} از ${fa(m.of)}</small></div></div>`}).join('')}</div>
   <div class="sec-h"><h3>سفارش‌های فعال</h3><a data-act="go" data-to="order">همه</a></div>
   ${active.length?active.map(ordItem).join(''):`<div class="card empty">${ic('send','lg')}<br>سفارش فعالی نداری.<br><button class="btn btn-s" data-act="go" data-to="order">ثبت اولین سفارش</button></div>`}
-  <div class="trust"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('shield')}ضمانت جبران ریزش</div><div>${ic('headset')}پشتیبانی همیشگی</div></div>`;
+  <div class="trust"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('zap')}شروع سریع سفارش</div><div>${ic('headset')}پشتیبانی همیشگی</div></div>`;
 },
 earn(){
-  const m=S.em===0,list=m?TASKS:VIEWS,t=list[0];
+  const k=KINDS[S.em],list=P[k],t=list[0];
   const head=`<h2 class="title">سکه‌گیری</h2>
-  <div class="seg" data-i="${S.em}"><i class="thumb"></i><button class="${m?'on':''}" data-act="em" data-i="0">${ic('users','sm')}عضویت در کانال</button><button class="${!m?'on':''}" data-act="em" data-i="1">${ic('eye','sm')}بازدید پست</button></div>
-  <div class="card limit"><div class="ring" style="--v:${S.done/S.limit*100}"><span class="js-done">${fa(S.done)}</span></div><div class="grow"><b>${fa(S.done)} از ${fa(S.limit)} کار امروز</b><small>سقف روزانه کیفیت اعضای کانال‌ها را بالا نگه می‌دارد و جلوی تقلب را می‌گیرد.</small></div></div>`;
+  <div class="seg three" data-i="${S.em}"><i class="thumb"></i>${KINDS.map((x,i)=>`<button class="${S.em===i?'on':''}" data-act="em" data-i="${i}">${ic(['users','chat','eye'][i],'sm')}${['کانال','گروه','بازدید'][i]}<small class="segr">${plus(P[x][0]?P[x][0].reward:[5,4,1][i])}</small></button>`).join('')}</div>
+  <div class="card limit"><div class="ring" style="--v:${S.done/S.limit*100}"><span class="js-done">${fa(S.done)}</span></div><div class="grow"><b>${fa(S.done)} از ${fa(S.limit)} کار امروز</b><small>سقف روزانه کیفیت اعضا را بالا نگه می‌دارد و جلوی تقلب را می‌گیرد.</small></div></div>`;
   if(!t)return head+`<div class="card empty" style="margin-top:18px"><div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><b style="color:var(--text)">همه‌ی کارهای این بخش را انجام دادی!</b><br>کارهای تازه هر چند دقیقه اضافه می‌شوند.<br><button class="btn btn-s" style="margin-top:10px" data-act="refill">${ic('refresh','sm')}بارگذاری کارهای جدید</button></div>`;
-  return head+`<div class="deck">${list.length>1?'<i class="deck-sh"></i>':''}${list.length>2?'<i class="deck-sh s2"></i>':''}${focusCard(t,list.length)}</div>
-  <div class="note">${ic('zap','sm')}<span>با یک لمس، ${m?'کانال':'پست'} در اپلیکیشن رسمی ایتا باز می‌شود. وقتی برگردی، ${m?'عضویتت':'بازدیدت'} خودکار بررسی می‌شود، سکه اضافه می‌شود و ${m?'کانال':'پست'} بعدی خودش می‌آید. سکه بعد از ۲۴ ساعت قطعی می‌شود.</span></div>`;
+  return head+`<div class="deck">${list.length>1?'<i class="deck-sh"></i>':''}${list.length>2?'<i class="deck-sh s2"></i>':''}${focusCard(t,list.length,k)}</div>
+  <div class="note">${ic('zap','sm')}<span>با یک لمس، ${KL[k]} در اپلیکیشن رسمی ایتا باز می‌شود. وقتی برگردی، ${k==='view'?'بازدیدت':'عضویتت'} خودکار بررسی می‌شود، سکه اضافه می‌شود و ${KL[k]} بعدی خودش می‌آید. سکه بعد از ۲۴ ساعت قطعی می‌شود و اگر زودتر خارج شوی کسر می‌شود.</span></div>`;
 },
 order(){
-  const m=S.om===0,min=m?50:100,max=m?5000:20000,step=m?50:100;
+  const k=KINDS[S.om],v=k==='view',min=v?100:50,max=v?20000:5000,step=v?100:50;
   return `<h2 class="title">ثبت سفارش</h2>
-  <div class="seg" data-i="${S.om}"><i class="thumb"></i><button class="${m?'on':''}" data-act="om" data-i="0">${ic('users','sm')}ممبر کانال</button><button class="${!m?'on':''}" data-act="om" data-i="1">${ic('eye','sm')}بازدید پست</button></div>
-  <div class="field"><label>${m?'لینک یا آیدی کانال':'لینک کانال یا پست'}<span>کانال باید عمومی باشد</span></label>
-    <div class="inp js-inp">${ic('link','sm')}<input class="ltr-in" data-in="link" inputmode="url" autocomplete="off" placeholder="${m?'eitaa.com/mychannel':'eitaa.com/mychannel/125'}" value="${S.link}"></div><div class="js-prev">${prevHTML()}</div></div>
-  <div class="field"><label>تعداد ${m?'ممبر':'بازدید'}<span>حداقل ${fa(min)}، حداکثر ${fa(max)}</span></label>
-    <div class="card" style="padding:16px 16px 14px"><div class="qty"><b class="js-qty">${fa(S.qty)}</b><span>${m?'نفر':'بازدید'}</span></div>
+  <div class="seg three" data-i="${S.om}"><i class="thumb"></i>${KINDS.map((x,i)=>`<button class="${S.om===i?'on':''}" data-act="om" data-i="${i}">${ic(['users','chat','eye'][i],'sm')}${['ممبر کانال','ممبر گروه','بازدید'][i]}</button>`).join('')}</div>
+  <div class="field"><label>${{channel:'لینک یا آیدی کانال',group:'لینک گروه',view:'لینک کانال یا پست'}[k]}<span>${k==='group'?'لینک عمومی یا لینک دعوت':'کانال باید عمومی باشد'}</span></label>
+    <div class="inp js-inp">${ic('link','sm')}<input class="ltr-in" data-in="link" inputmode="url" autocomplete="off" placeholder="${{channel:'eitaa.com/mychannel',group:'eitaa.com/joinchat/abc123',view:'eitaa.com/mychannel/125'}[k]}" value="${S.link}"></div><div class="js-prev">${prevHTML()}</div></div>
+  <div class="field"><label>تعداد ${v?'بازدید':'ممبر'}<span>حداقل ${fa(min)}، حداکثر ${fa(max)}</span></label>
+    <div class="card" style="padding:16px 16px 14px"><div class="qty"><b class="js-qty">${fa(S.qty)}</b><span>${v?'بازدید':'نفر'}</span></div>
     <input type="range" class="range" data-in="qty" min="${min}" max="${max}" step="${step}" value="${S.qty}" style="--f:${(S.qty-min)/(max-min)*100}%" aria-label="تعداد">
-    <div class="chips nob" style="justify-content:center">${(m?[100,500,1000,2000]:[500,1000,5000,10000]).map(v=>`<button class="chip ${S.qty===v?'on':''}" data-act="preset" data-v="${v}">${fa(v)}</button>`).join('')}</div></div></div>
-  ${m?'':`<div class="field"><label>روی چند پست آخر؟<span>بازدید بین پست‌ها پخش می‌شود</span></label><div class="chips nob">${[1,3,5,10].map(p=>`<button class="chip ${S.posts===p?'on':''}" data-act="posts" data-v="${p}">${fa(p)} پست</button>`).join('')}</div></div>`}
-  <div class="guar"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('shield')}${m?'جبران ریزش ۳۰ روزه':'بازدید ماندگار'}</div><div>${ic('clock')}شروع زیر ۱ ساعت</div></div>
-  <div class="card sum"><div class="r"><span>هزینه‌ی هر ${m?'ممبر':'بازدید'}</span><b>${fa(RATE[m?'member':'view'])} ${coin('xs')}</b></div>
-    <div class="r"><span>تعداد</span><b class="js-q2">${fa(S.qty*(m?1:S.posts))}</b></div>
+    <div class="chips nob" style="justify-content:center">${(v?[500,1000,5000,10000]:[100,500,1000,2000]).map(n=>`<button class="chip ${S.qty===n?'on':''}" data-act="preset" data-v="${n}">${fa(n)}</button>`).join('')}</div></div></div>
+  ${v?`<div class="field"><label>روی چند پست آخر؟<span>بازدید بین پست‌ها پخش می‌شود</span></label><div class="chips nob">${[1,3,5,10].map(n=>`<button class="chip ${S.posts===n?'on':''}" data-act="posts" data-v="${n}">${fa(n)} پست</button>`).join('')}</div></div>`:''}
+  <div class="guar"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('clock')}شروع زیر ۱ ساعت</div><div>${ic('trend')}گزارش لحظه‌ای</div></div>
+  <div class="card sum"><div class="r"><span>هزینه‌ی هر ${TL[k]}</span><b>${fa(RATE[k])} ${coin('xs')}</b></div>
+    <div class="r"><span>تعداد</span><b class="js-q2">${fa(S.qty*(v?S.posts:1))}</b></div>
     <div class="r js-afterrow"><span>موجودی بعد از سفارش</span><b class="js-after"></b></div>
     <div class="r tot"><span>هزینه‌ی کل</span><b><span class="js-cost"></span>${coin()}</b></div></div>
   <button class="btn btn-p w100 big sec js-submit" data-act="submit">${ic('send','sm')}ثبت سفارش</button>
+  ${v?'':`<div class="note">${ic('shield','sm')}<span>کاربری که قبل از قطعی شدن سکه (۲۴ ساعت) از ${KL[k]} خارج شود، سکه‌اش کسر می‌شود و امتیاز اعتمادش پایین می‌آید؛ این کار ریزش را کم می‌کند.</span></div>`}
   <div class="sec-h"><h3>سفارش‌های من</h3><a>${fa(S.orders.length)} سفارش</a></div>
   ${S.orders.map(ordItem).join('')}`;
 },
@@ -607,24 +624,25 @@ profile(){
     <div class="li" data-act="logout" style="color:var(--bad)">${ic('logout')}<span>خروج از حساب</span></div></div>
   <p class="sub" style="text-align:center;margin-top:16px">پیوند، نسخه‌ی ۱٫۰ (نمایشی)</p>`;
 }};
-function focusCard(t,n){const m=S.em===0;return `<div class="card focus in" data-fid="${t.id}">
-  <div class="f-meta"><span class="sub">${fa(n)} ${m?'کانال':'پست'} در صف</span><span class="reward big">${plus(t.reward)}${coin('xs')}</span></div>
-  ${av(t.name,t.id,'xl')}<b class="f-name">${t.name}</b><small class="sub">${m?fa(t.members)+' عضو':'پست تازه<i class="sep"></i>'+t.ago}</small>
-  ${m?'':`<div class="post">${t.text}</div>`}
-  <div class="f-state"><button class="btn btn-p big w100" data-act="fjoin" data-id="${t.id}">${ic(m?'link':'eye','sm')}${m?'عضو شو و سکه بگیر':'ببین و سکه بگیر'}</button></div>
-  <div class="f-row"><button class="btn btn-ghost" data-act="fnext">${ic('chev','sm')}بعدی</button>${m?`<button class="btn btn-ghost" data-act="report" data-id="${t.id}">${ic('flag','sm')}گزارش</button>`:''}</div></div>`}
+function focusCard(t,n,k){const j=k!=='view';return `<div class="card focus in" data-fid="${t.id}">
+  <div class="f-meta"><span class="sub">${fa(n)} ${KL[k]} در صف</span><span class="reward big">${plus(t.reward)}${coin('xs')}</span></div>
+  ${av(t.name,t.id,'xl')}<b class="f-name">${t.name}</b><small class="sub">${j?(k==='group'?'گروه<i class="sep"></i>':'کانال<i class="sep"></i>')+fa(t.members)+' عضو':'پست تازه<i class="sep"></i>'+t.ago}</small>
+  ${j?'':`<div class="post">${t.text}</div>`}
+  <div class="f-state"><button class="btn btn-p big w100" data-act="fjoin" data-id="${t.id}">${ic(j?'link':'eye','sm')}${j?`عضو ${KL[k]} شو و سکه بگیر`:'ببین و سکه بگیر'}</button></div>
+  <div class="f-row"><button class="btn btn-ghost" data-act="fnext">${ic('chev','sm')}بعدی</button>${j?`<button class="btn btn-ghost" data-act="report" data-id="${t.id}">${ic('flag','sm')}گزارش</button>`:''}</div></div>`}
 function advance(){const c=$('.focus');if(!c){rerender();return}c.classList.remove('in');c.classList.add('out');setTimeout(()=>{if(cur==='earn')rerender()},380)}
 
 /* ---------- order helpers ---------- */
-function parseLink(v,member){v=v.trim();const m=v.match(/^(?:https?:\/\/)?(?:www\.)?eitaa\.com\/([A-Za-z][A-Za-z0-9_]{3,31})(?:\/(\d+))?\/?$/)||v.match(/^@([A-Za-z][A-Za-z0-9_]{3,31})$/);
-  if(!m)return null;if(!member&&!m[2]&&v.startsWith('@'))return {h:m[1],post:null};return {h:m[1],post:m[2]||null}}
-function prevHTML(){if(!S.link)return '';const p=parseLink(S.link,S.om===0);
-  if(!p)return `<small class="sub" style="display:block;margin-top:8px;color:var(--bad)">لینک را به شکل eitaa.com/نام‌کانال وارد کنید</small>`;
-  return `<div class="prev">${av(p.h,5)}<div class="grow"><b class="ltr">@${p.h}</b><small>${p.post?'پست شماره‌ی '+fa(p.post):'کانال عمومی'}<i class="sep"></i>${fa(1000+p.h.length*137)} عضو فعلی</small></div>${ic('check','sm')}</div>`}
-function costOf(){return S.qty*RATE[S.om===0?'member':'view']*(S.om===0?1:S.posts)}
+function parseLink(v){v=v.trim();const m=v.match(/^(?:https?:\/\/)?(?:www\.)?eitaa\.com\/(joinchat\/)?([A-Za-z0-9][A-Za-z0-9_-]{3,40})(?:\/(\d+))?\/?$/)||v.match(/^@()([A-Za-z][A-Za-z0-9_]{3,31})$/);
+  if(!m)return null;return {h:m[2],invite:!!m[1],post:m[3]||null}}
+function prevHTML(){if(!S.link)return '';const k=KINDS[S.om],p=parseLink(S.link);
+  if(!p)return `<small class="sub" style="display:block;margin-top:8px;color:var(--bad)">لینک را به شکل ${k==='group'?'eitaa.com/joinchat/کد':'eitaa.com/نام‌کانال'} وارد کنید</small>`;
+  const what=p.invite?'گروه با لینک دعوت':k==='group'?'گروه عمومی':p.post?'پست شماره‌ی '+fa(p.post):k==='view'?'پست‌های آخر کانال':'کانال عمومی';
+  return `<div class="prev">${av(p.h,5)}<div class="grow"><b class="ltr">${p.invite?'joinchat/'+p.h:'@'+p.h}</b><small>${what}<i class="sep"></i>${fa(1000+p.h.length*137)} عضو فعلی</small></div>${ic('check','sm')}</div>`}
+function costOf(){const k=KINDS[S.om];return S.qty*RATE[k]*(k==='view'?S.posts:1)}
 function updateCost(){const c=costOf(),after=S.coins-c,low=after<0;const e=$('.js-cost');if(!e)return;e.textContent=fa(c);
   const a=$('.js-after');a.textContent=low?'کافی نیست':fa(after);$('.js-afterrow').classList.toggle('warn',low);
-  const q2=$('.js-q2');if(q2)q2.textContent=fa(S.qty*(S.om===0?1:S.posts));
+  const q2=$('.js-q2');if(q2)q2.textContent=fa(S.qty*(KINDS[S.om]==='view'?S.posts:1));
   const b=$('.js-submit');b.innerHTML=low?ic('bag','sm')+'خرید سکه و ثبت سفارش':ic('send','sm')+'ثبت سفارش'}
 
 /* ---------- navigation ---------- */
@@ -642,35 +660,37 @@ const A={
   claim(el){const v=DAILY[S.streak];el.disabled=true;fly(el,6,()=>{setCoins(v)});S.streak++;S.claimed=true;addHist('جایزه‌ی روزانه‌ی روز '+fa(S.streak),v,'gift');toast(`${fa(v)} سکه‌ی جایزه‌ی امروز اضافه شد`,'gift');setTimeout(rerender,1100)},
   mclaim(el){const m=MISSIONS[+el.dataset.i];S.mclaimed[el.dataset.i]=true;fly(el,5,()=>setCoins(m.r));addHist('مأموریت: '+m.t,m.r,'gift');toast('پاداش مأموریت دریافت شد','gift');setTimeout(rerender,1000)},
   em:el=>{S.em=+el.dataset.i;rerender()},
-  om:el=>{S.om=+el.dataset.i;S.qty=S.om===0?500:1000;S.link='';S.posts=1;rerender()},
+  om:el=>{S.om=+el.dataset.i;S.qty=S.om===2?1000:500;S.link='';S.posts=1;rerender()},
   cat:el=>{S.cat=el.dataset.c;rerender()},
-  fjoin(el){const m=S.em===0,id=+el.dataset.id,t=(m?TASKS:VIEWS).find(x=>x.id===id),st=el.closest('.f-state');
+  fjoin(el){const k=KINDS[S.em],j=k!=='view',id=+el.dataset.id,t=P[k].find(x=>x.id===id),st=el.closest('.f-state');
     document.querySelectorAll('.f-row .btn').forEach(b=>b.disabled=true);
     const set=h=>st.innerHTML=h,wait=txt=>`<button class="btn btn-s big w100" disabled><span class="spin"></span>${txt}</button>`;
     set(wait('در حال باز کردن ایتا…'));
-    const finish=()=>{set(`<div class="ok-line">${ic('check','sm')}${m?'عضویت':'بازدید'} تأیید شد؛ ${plus(t.reward)} سکه</div>`);
-      fly(st,m?4:2,()=>{setCoins(t.reward);S.pending+=t.reward});S.earned+=t.reward;done1();addHist(m?`عضویت در «${t.name}»`:`بازدید پست «${t.name}»`,t.reward,'earn');
-      if(m)TASKS=TASKS.filter(x=>x.id!==id);else VIEWS=VIEWS.filter(x=>x.id!==id);setTimeout(advance,1000)};
-    setTimeout(()=>{if(m){set(wait('در ایتا عضو شو و برگرد…'));setTimeout(()=>{set(wait('در حال بررسی خودکار عضویت…'));setTimeout(finish,900)},1300)}
+    const finish=()=>{set(`<div class="ok-line">${ic('check','sm')}${j?'عضویت':'بازدید'} تأیید شد؛ ${plus(t.reward)} سکه</div>`);
+      fly(st,j?4:2,()=>{setCoins(t.reward);S.pending+=t.reward});S.earned+=t.reward;done1();addHist(j?`عضویت در ${KL[k]} «${t.name}»`:`بازدید پست «${t.name}»`,t.reward,'earn');
+      P[k]=P[k].filter(x=>x.id!==id);setTimeout(advance,1000)};
+    setTimeout(()=>{if(j){set(wait(`در ایتا عضو ${KL[k]} شو و برگرد…`));setTimeout(()=>{set(wait('در حال بررسی خودکار عضویت…'));setTimeout(finish,900)},1300)}
       else{set(`<div class="vwait"><div class="bar"><i></i></div><small><span class="spin"></span>در حال ثبت بازدید…</small></div>`);const bar=st.querySelector('.bar i');bar.style.transition=`width ${t.secs}s linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width='100%'));setTimeout(finish,t.secs*1000+100)}},900)},
-  fnext(){if(S.em===0){TASKS.push(TASKS.shift())}else{VIEWS.push(VIEWS.shift())}advance()},
-  report(el){const t=TASKS.find(x=>x.id===+el.dataset.id);openSheet(`<div class="big-ic" style="background:var(--bad-soft);color:var(--bad)">${ic('flag','lg')}</div><h4>گزارش کانال «${t.name}»</h4><p class="c">مشکل این کانال چیست؟ گزارش شما بدون نام بررسی می‌شود.</p>
-    ${['محتوای نامناسب یا غیرقانونی','کانال جعلی یا کلاهبرداری','لینک خراب است یا کانال خصوصی است','دلیل دیگر'].map((r,i)=>`<div class="opt ${i===0?'on':''}" data-act="pick"><i class="rd"></i><div class="grow"><b>${r}</b></div></div>`).join('')}
+  fnext(){const k=KINDS[S.em];P[k].push(P[k].shift());advance()},
+  report(el){const k=KINDS[S.em],t=P[k].find(x=>x.id===+el.dataset.id);openSheet(`<div class="big-ic" style="background:var(--bad-soft);color:var(--bad)">${ic('flag','lg')}</div><h4>گزارش ${KL[k]} «${t.name}»</h4><p class="c">مشکل این ${KL[k]} چیست؟ گزارش شما بدون نام بررسی می‌شود.</p>
+    ${['محتوای نامناسب یا غیرقانونی','جعلی یا کلاهبرداری','لینک خراب است یا خصوصی است','دلیل دیگر'].map((r,i)=>`<div class="opt ${i===0?'on':''}" data-act="pick"><i class="rd"></i><div class="grow"><b>${r}</b></div></div>`).join('')}
     <div class="acts"><button class="btn btn-ghost" data-act="close">انصراف</button><button class="btn btn-dark" data-act="sendreport" data-id="${t.id}">ارسال گزارش</button></div>`)},
   pick(el){el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o===el));if(el.dataset.pay!==undefined){S.pay=+el.dataset.pay}},
-  sendreport(el){closeSheet();const id=+el.dataset.id;TASKS=TASKS.filter(x=>x.id!==id);advance();toast('گزارش ثبت شد؛ ممنون از همراهی‌ات','flag')},
-  refill(){TASKS=[{id:21,name:'عکاسی با موبایل',cat:'آموزشی',members:11200,reward:5},{id:22,name:'خبر فوری',cat:'خبری',members:61800,reward:4},{id:23,name:'گل و گیاه آپارتمانی',cat:'سبک زندگی',members:8700,reward:6},{id:24,name:'پوشاک زمستانه',cat:'فروشگاهی',members:19300,reward:4}];
-    VIEWS=[{id:121,name:'خبر فوری',ago:'۳ دقیقه پیش',text:'پیش‌بینی هوای آخر هفته: بارش برف در استان‌های شمال غربی و کاهش دما در تهران.',reward:1,secs:5},{id:122,name:'عکاسی با موبایل',ago:'۱۵ دقیقه پیش',text:'سه تنظیم ساده‌ی دوربین گوشی که عکس‌های شب را چند برابر بهتر می‌کند.',reward:1,secs:5}];rerender();toast('کارهای تازه بارگذاری شد','refresh')},
+  sendreport(el){closeSheet();const k=KINDS[S.em],id=+el.dataset.id;P[k]=P[k].filter(x=>x.id!==id);advance();toast('گزارش ثبت شد؛ ممنون از همراهی‌ات','flag')},
+  refill(){const k=KINDS[S.em];P[k]={channel:[{id:21,name:'عکاسی با موبایل',members:11200,reward:5},{id:22,name:'خبر فوری',members:61800,reward:5},{id:23,name:'گل و گیاه آپارتمانی',members:8700,reward:5},{id:24,name:'پوشاک زمستانه',members:19300,reward:5}],
+    group:[{id:61,name:'گفت‌وگوی دانشجویی',members:2700,reward:4},{id:62,name:'باشگاه دوچرخه‌سواری',members:1500,reward:4},{id:63,name:'آشپزی خانگی',members:6200,reward:4}],
+    view:[{id:121,name:'خبر فوری',ago:'۳ دقیقه پیش',text:'پیش‌بینی هوای آخر هفته: بارش برف در استان‌های شمال غربی و کاهش دما در تهران.',reward:1,secs:5},{id:122,name:'عکاسی با موبایل',ago:'۱۵ دقیقه پیش',text:'سه تنظیم ساده‌ی دوربین گوشی که عکس‌های شب را چند برابر بهتر می‌کند.',reward:1,secs:5}]}[k];rerender();toast('کارهای تازه بارگذاری شد','refresh')},
   preset(el){S.qty=+el.dataset.v;rerender()},
   posts(el){S.posts=+el.dataset.v;rerender()},
-  submit(el){const m=S.om===0,p=parseLink(S.link,m),inp=$('.js-inp');
-    if(!p){inp.classList.remove('shake');inp.offsetWidth;inp.classList.add('shake');toast(S.link?'لینک وارد شده معتبر نیست':'اول لینک کانال را وارد کن','link');return}
-    const c=costOf();if(c>S.coins){openSheet(`<div class="big-ic" style="background:var(--gold-soft);color:var(--gold-ink)">${coin('xl')}</div><h4>سکه کافی نیست</h4><p class="c">برای این سفارش ${fa(c)} سکه لازم داری و ${fa(S.coins-c<0?c-S.coins:0)} سکه کم داری. با بسته‌های فروشگاه تا ۴۰٪ هدیه می‌گیری.</p><div class="acts"><button class="btn btn-ghost" data-act="close">بعداً</button><button class="btn btn-p" data-act="toshop">${ic('bag','sm')}رفتن به فروشگاه</button></div>`);return}
+  submit(el){const k=KINDS[S.om],v=k==='view',p=parseLink(S.link),inp=$('.js-inp');
+    if(!p){inp.classList.remove('shake');inp.offsetWidth;inp.classList.add('shake');toast(S.link?'لینک وارد شده معتبر نیست':`اول لینک ${k==='group'?'گروه':'کانال'} را وارد کن`,'link');return}
+    const c=costOf();if(c>S.coins){openSheet(`<div class="big-ic" style="background:var(--gold-soft);color:var(--gold-ink)">${coin('xl')}</div><h4>سکه کافی نیست</h4><p class="c">برای این سفارش ${fa(c)} سکه لازم داری و ${fa(c-S.coins)} سکه کم داری. با بسته‌های فروشگاه تا ۴۰٪ هدیه می‌گیری.</p><div class="acts"><button class="btn btn-ghost" data-act="close">بعداً</button><button class="btn btn-p" data-act="toshop">${ic('bag','sm')}رفتن به فروشگاه</button></div>`);return}
     el.disabled=true;el.innerHTML='<span class="spin"></span>در حال ثبت سفارش…';
-    setTimeout(()=>{const o={id:2392+S.orders.length,name:'@'+p.h,type:m?'member':'view',qty:S.qty*(m?1:S.posts),done:0,st:'q'};S.orders.unshift(o);setCoins(-c);S.spent+=c;
-      addHist(`سفارش ${fa(o.qty)} ${m?'ممبر':'بازدید'}`,-c,'order');
-      openSheet(`<div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><h4>سفارش ثبت شد</h4><p class="c">${fa(o.qty)} ${m?'ممبر':'بازدید'} برای <span class="ltr">@${p.h}</span> در صف قرار گرفت و حداکثر تا یک ساعت دیگر شروع می‌شود. پیشرفت را از «سفارش‌های من» دنبال کن.</p>
-        <div class="card" style="box-shadow:none"><div class="sum" style="margin:0"><div class="r"><span>کد سفارش</span><b>${faD(o.id)}</b></div><div class="r"><span>سکه‌ی کسر شده</span><b>${fa(c)} ${coin('xs')}</b></div><div class="r"><span>ضمانت</span><b>${m?'جبران ریزش ۳۰ روزه':'بازدید ماندگار'}</b></div></div></div>
+    const nm=p.invite?'گروه شما':'@'+p.h;
+    setTimeout(()=>{const o={id:2392+S.orders.length,name:nm,type:k,qty:S.qty*(v?S.posts:1),done:0,st:'q'};S.orders.unshift(o);setCoins(-c);S.spent+=c;
+      addHist(`سفارش ${fa(o.qty)} ${TL[k]}`,-c,'order');
+      openSheet(`<div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><h4>سفارش ثبت شد</h4><p class="c">${fa(o.qty)} ${TL[k]} برای <span class="ltr">${nm}</span> در صف قرار گرفت و حداکثر تا یک ساعت دیگر شروع می‌شود. پیشرفت را از «سفارش‌های من» دنبال کن.</p>
+        <div class="card" style="box-shadow:none"><div class="sum" style="margin:0"><div class="r"><span>کد سفارش</span><b>${faD(o.id)}</b></div><div class="r"><span>سکه‌ی کسر شده</span><b>${fa(c)} ${coin('xs')}</b></div><div class="r"><span>شروع</span><b>حداکثر ۱ ساعت</b></div></div></div>
         <div class="acts"><button class="btn btn-p" data-act="close">عالی، متوجه شدم</button></div>`);
       S.link='';rerender();setTimeout(()=>{o.st='run';o.done=Math.round(o.qty*.04);syncOrder(o)},4000)},1100)},
   toshop(){closeSheet();go('shop')},
@@ -708,7 +728,7 @@ const A={
   rules(){openSheet(`<h4>قوانین و حریم خصوصی</h4><ol class="rules">
     <li>هر کاربر فقط یک حساب در پیوند دارد؛ ساخت چند حساب باعث مسدود شدن می‌شود.</li>
     <li>عضویت و بازدید فقط به‌صورت دستی و در اپلیکیشن رسمی ایتا انجام می‌شود. پیوند به حساب ایتای شما دسترسی ندارد.</li>
-    <li>سکه‌ی عضویت بعد از ۲۴ ساعت قطعی می‌شود؛ خروج از کانال باعث کسر سکه و کاهش امتیاز اعتماد می‌شود.</li>
+    <li>سکه‌ی عضویت بعد از ۲۴ ساعت قطعی می‌شود؛ خروج از کانال یا گروه باعث کسر سکه و کاهش امتیاز اعتماد می‌شود.</li>
     <li>سفارش برای کانال‌های دارای محتوای غیرقانونی، غیراخلاقی یا کلاهبرداری پذیرفته نمی‌شود.</li>
     <li>سکه ارزش ریالی ندارد و قابل تبدیل به پول نیست.</li>
     <li>اطلاعات شما فقط برای ارائه‌ی خدمت استفاده می‌شود و در اختیار دیگران قرار نمی‌گیرد.</li></ol>

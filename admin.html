@@ -11,7 +11,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#f3f4fa;--surface:#fff;--surface-2:#f6f7fc;--text:#14162b;--muted:#6b7090;--faint:#9a9fbb;--line:#e7e9f2;--grid:#eef0f6;
-  --p:#6352f5;--p-soft:rgba(99,82,245,.1);--s1:#5b50e6;--s2:#0f9e8e;--grad:linear-gradient(135deg,#7b5cff,#4f74ff 52%,#14b8a6);
+  --p:#6352f5;--p-soft:rgba(99,82,245,.1);--s1:#5b50e6;--s2:#0f9e8e;--s3:#d9730d;--grad:linear-gradient(135deg,#7b5cff,#4f74ff 52%,#14b8a6);
   --ok:#119a4e;--ok-soft:rgba(17,154,78,.1);--warn:#c77700;--warn-soft:rgba(232,147,12,.13);--bad:#d93d42;--bad-soft:rgba(229,72,77,.1);
   --sh:0 4px 20px rgba(28,32,88,.05)}
 body{font-family:"Vazirmatn",Tahoma,sans-serif;background:var(--bg);color:var(--text);font-size:14px}
@@ -62,10 +62,11 @@ button,input,select{font-family:inherit}
 .range-tabs{display:flex;gap:4px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:3px}
 .range-tabs button{white-space:nowrap;border:0;background:none;padding:6px 12px;border-radius:9px;font-size:12.5px;font-weight:700;color:var(--muted);cursor:pointer}
 .range-tabs button.on{background:var(--surface);color:var(--text);box-shadow:0 2px 6px rgba(0,0,0,.06)}
-.mix{display:flex;gap:2px;height:16px;margin:30px 0 10px}
+.mix{display:flex;gap:2px;height:16px;margin:8px 0 12px}
 .mix div{border-radius:4px;position:relative}
 .mix div span{position:absolute;bottom:22px;right:0;font-size:12.5px;font-weight:800;color:var(--text);white-space:nowrap}
-.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-bottom:18px}
+.legend b{color:var(--text);margin-right:2px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-left:6px;vertical-align:-1px}
 .facts{display:grid;gap:0}
 .fact{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
@@ -167,11 +168,11 @@ tbody tr:hover{background:var(--surface-2)}
         <div class="card"><div class="ch"><div><h3>فروش سکه</h3><div class="sub">میلیون تومان، به تفکیک روز</div></div><div class="range-tabs js-rt"><button data-r="7">۷ روز</button><button class="on" data-r="14">۱۴ روز</button><button data-r="30">۳۰ روز</button></div></div>
           <div class="chart" id="sales"><div class="tip" id="tip"></div></div></div>
         <div class="card"><div class="ch"><div><h3>ترکیب سفارش‌ها</h3><div class="sub">۳۰ روز اخیر، بر اساس تعداد</div></div></div>
-          <div class="mix" role="img" aria-label="ممبر ۶۴ درصد، بازدید ۳۶ درصد"><div style="flex:64;background:var(--s1)"><span>ممبر ۶۴٪</span></div><div style="flex:36;background:var(--s2)"><span>بازدید ۳۶٪</span></div></div>
-          <div class="legend"><span><i style="background:var(--s1)"></i>ممبر کانال</span><span><i style="background:var(--s2)"></i>بازدید پست</span></div>
+          <div class="mix" role="img" aria-label="ممبر کانال ۵۲ درصد، ممبر گروه ۱۶ درصد، بازدید ۳۲ درصد"><div style="flex:52;background:var(--s1)"></div><div style="flex:16;background:var(--s3)"></div><div style="flex:32;background:var(--s2)"></div></div>
+          <div class="legend"><span><i style="background:var(--s1)"></i>ممبر کانال <b>۵۲٪</b></span><span><i style="background:var(--s3)"></i>ممبر گروه <b>۱۶٪</b></span><span><i style="background:var(--s2)"></i>بازدید <b>۳۲٪</b></span></div>
           <div class="facts">
             <div class="fact"><span>میانگین زمان شروع سفارش</span><b>۱۸ دقیقه</b></div>
-            <div class="fact"><span>ریزش جبران‌شده</span><b>۲٫۱٪</b></div>
+            <div class="fact"><span>سکه‌ی کسرشده بابت خروج زودهنگام</span><b>۳٬۲۴۰</b></div>
             <div class="fact"><span>کاربران جدید امروز</span><b>۸۴۲</b></div>
             <div class="fact"><span>عضویت‌های تأییدشده امروز</span><b>۲۱٬۳۶۰</b></div></div></div>
       </div>
@@ -223,10 +224,11 @@ function toast(m,i='check'){const t=$('#toast');t.innerHTML=ic(i,'sm')+m;t.class
 let seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
 
 /* ---------- data ---------- */
-const CH=['دنیای عکاسی','آشپزی با مهتاب','فناوری روز','کتاب‌خوان','زبان انگلیسی در ۵ دقیقه','دکوراسیون خانه','سفرنامه ایران','بازار موبایل','ورزش در خانه','اخبار اقتصادی','خبر فوری','گل و گیاه آپارتمانی','پوشاک زمستانه','عکاسی با موبایل'];
+const CH=['دنیای عکاسی','گروه عکاسان','آشپزی با مهتاب','فناوری روز','کتاب‌خوان','زبان انگلیسی در ۵ دقیقه','دکوراسیون خانه','سفرنامه ایران','بازار موبایل','ورزش در خانه','اخبار اقتصادی','خبر فوری','گل و گیاه آپارتمانی','پوشاک زمستانه','عکاسی با موبایل'];
 const NM=['نگار رحیمی','علی محمدی','مریم کاظمی','رضا احمدی','زهرا موسوی','حسین کریمی','سارا جعفری','مهدی رضایی','فاطمه حسینی','امیر نوری','لیلا صادقی','محمد یزدانی'];
+const TL={channel:'ممبر کانال',group:'ممبر گروه',view:'بازدید'};
 const STS={run:['st-run','در حال انجام','clock'],done:['st-done','تکمیل شد','check'],q:['st-q','در صف','clock'],pause:['st-pause','متوقف','pause']};
-const ORD=CH.map((c,i)=>{const type=rnd()>.38?'member':'view',qty=type==='member'?[500,1000,2000,3000,5000][i%5]:[1000,5000,10000,20000][i%4];
+const ORD=CH.map((c,i)=>{const r=rnd(),type=c.startsWith('گروه')?'group':r<.5?'channel':r<.68?'group':'view',qty=type==='channel'?[500,1000,2000,3000,5000][i%5]:type==='group'?[200,300,500,1000][i%4]:[1000,5000,10000,20000][i%4];
   const st=i<6?'run':i<8?'q':i===9?'pause':'done';const done=st==='done'?qty:st==='q'?0:Math.round(qty*(.15+rnd()*.7));
   return {id:2391-i,ch:c,by:NM[i%NM.length],type,qty,done,st,t:i<3?`${fa(5+i*14)} دقیقه پیش`:i<8?`${fa(i-1)} ساعت پیش`:'دیروز'}});
 const USR=NM.map((n,i)=>({id:48213+i*317,n,ph:'۰۹۱'+fa(i%10)+' ••• '+fa(1000+Math.floor(rnd()*8999)).replace(/٬/g,''),coins:Math.round(200+rnd()*9000),trust:i===4?38:i===9?54:Math.round(70+rnd()*30),today:Math.round(rnd()*100),dev:i===4?3:1,ban:i===4}));
@@ -238,8 +240,8 @@ let FR=[
   {sev:'md',t:'دعوت‌های مشکوک',u:'حسین کریمی',d:'۹ دعوت موفق از یک محدوده‌ی IP در یک ساعت؛ پاداش دعوت موقتاً نگه داشته شد.',time:'دیروز'}];
 let PK=[{c:500,b:0,p:29000,l:'',on:1},{c:1200,b:10,p:59000,l:'',on:1},{c:3000,b:20,p:139000,l:'پرفروش‌ترین',on:1},{c:7000,b:30,p:299000,l:'به‌صرفه',on:1},{c:15000,b:40,p:590000,l:'بسته‌ی حرفه‌ای',on:1}];
 const SETS=[
-  {h:'پاداش‌ها',d:'سکه‌ای که کاربر برای هر کار می‌گیرد',f:[['سکه‌ی هر عضویت','reward_join',4,'سکه'],['سکه‌ی هر بازدید','reward_view',1,'سکه'],['جایزه‌ی دعوت','ref_bonus',100,'سکه'],['سهم از سکه‌گیری دوست','ref_share',10,'درصد']]},
-  {h:'هزینه‌ی سفارش',d:'سکه‌ای که از سفارش‌دهنده کم می‌شود',f:[['هزینه‌ی هر ممبر','cost_member',5,'سکه'],['هزینه‌ی هر بازدید','cost_view',1,'سکه'],['حداقل سفارش ممبر','min_member',50,'نفر'],['ضمانت جبران ریزش','refill_days',30,'روز']]},
+  {h:'پاداش‌ها',d:'سکه‌ای که کاربر برای هر کار می‌گیرد',f:[['سکه‌ی عضویت کانال','reward_ch',5,'سکه'],['سکه‌ی عضویت گروه','reward_gr',4,'سکه'],['سکه‌ی هر بازدید','reward_view',1,'سکه'],['جایزه‌ی دعوت','ref_bonus',100,'سکه'],['سهم از سکه‌گیری دوست','ref_share',10,'درصد']]},
+  {h:'هزینه‌ی سفارش',d:'سکه‌ای که از سفارش‌دهنده کم می‌شود',f:[['هزینه‌ی هر ممبر کانال','cost_ch',6,'سکه'],['هزینه‌ی هر ممبر گروه','cost_gr',5,'سکه'],['هزینه‌ی هر بازدید','cost_view',2,'سکه'],['حداقل سفارش ممبر','min_member',50,'نفر']]},
   {h:'ضدتقلب',d:'قوانینی که جلوی سوءاستفاده را می‌گیرند',f:[['سقف کار روزانه‌ی هر کاربر','daily_cap',100,'کار'],['زمان قطعی شدن سکه','hold_hours',24,'ساعت'],['حداکثر حساب برای هر دستگاه','max_dev',1,'حساب'],['حداقل فاصله‌ی دو کار','min_gap',8,'ثانیه']]},
   {h:'سیستم',d:'روشن و خاموش کردن بخش‌ها',t:[['ثبت‌نام کاربر جدید',1],['پرداخت درون‌برنامه‌ای (بازار و مایکت)',1],['درگاه بانکی نسخه‌ی وب',1],['حالت تعمیرات',0]]}];
 
@@ -281,8 +283,8 @@ $('.js-rt').addEventListener('click',e=>{const b=e.target.closest('button');if(!
 window.addEventListener('resize',()=>{clearTimeout(window._r);window._r=setTimeout(drawSales,120)});
 
 const stc=s=>{const [c,t,i]=STS[s];return `<span class="st ${c}">${ic(i)}${t}</span>`};
-const prog=o=>`<div class="prog"><div class="b"><i style="width:${o.done/o.qty*100}%${o.type==='view'?';background:var(--s2)':''}"></i></div><small>${fa(Math.round(o.done/o.qty*100))}٪</small></div>`;
-function recent(){$('.js-recent').innerHTML=ORD.slice(0,5).map((o,i)=>`<tr data-oid="${o.id}"><td><div class="who">${av(o.ch,i)}<div><b>${o.ch}</b><small>${o.t}</small></div></div></td><td>${o.type==='member'?'ممبر':'بازدید'}</td><td>${prog(o)}</td><td>${stc(o.st)}</td></tr>`).join('')}
+const prog=o=>`<div class="prog"><div class="b"><i style="width:${o.done/o.qty*100}%;background:var(--${o.type==='view'?'s2':o.type==='group'?'s3':'s1'})"></i></div><small>${fa(Math.round(o.done/o.qty*100))}٪</small></div>`;
+function recent(){$('.js-recent').innerHTML=ORD.slice(0,5).map((o,i)=>`<tr data-oid="${o.id}"><td><div class="who">${av(o.ch,i)}<div><b>${o.ch}</b><small>${o.t}</small></div></div></td><td>${TL[o.type]}</td><td>${prog(o)}</td><td>${stc(o.st)}</td></tr>`).join('')}
 function fraudMini(){$('.js-fraudmini').innerHTML=FR.length?FR.slice(0,3).map(f=>`<div class="fact" style="align-items:flex-start;gap:10px"><span style="display:flex;gap:10px;align-items:flex-start"><span class="sev ${f.sev}">${f.sev==='hi'?'جدی':'هشدار'}</span><span><b style="display:block;font-size:13.5px">${f.t}</b><small>${f.u}</small></span></span><small>${f.time}</small></div>`).join(''):`<div class="empty">${ic('shield')}<br>هشداری برای بررسی نیست.</div>`}
 
 /* ---------- orders ---------- */
@@ -290,11 +292,11 @@ let of='all',oq='';
 function orders(){const F=[['all','همه'],['run','در حال انجام'],['q','در صف'],['pause','متوقف'],['done','تکمیل شده']];
   $('.js-ofilters').innerHTML=F.map(([k,t])=>`<button class="chip ${of===k?'on':''}" data-of="${k}">${t} <span style="opacity:.6">${fa(k==='all'?ORD.length:ORD.filter(o=>o.st===k).length)}</span></button>`).join('')+`<label class="search">${ic('search','sm')}<input class="js-oq" placeholder="جستجوی کانال یا کد" value="${oq}"></label>`;
   const L=ORD.filter(o=>(of==='all'||o.st===of)&&(!oq||o.ch.includes(oq)||String(o.id).includes(oq)||fa(o.id).includes(oq)));
-  $('.js-orders').innerHTML=L.length?L.map((o,i)=>`<tr data-oid="${o.id}"><td><b>${String(o.id).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])}</b></td><td><div class="who">${av(o.ch,i)}<div><b>${o.ch}</b><small>کانال عمومی</small></div></div></td><td>${o.by}</td><td>${o.type==='member'?'ممبر':'بازدید'}</td><td>${fa(o.qty)}</td><td>${prog(o)}</td><td>${stc(o.st)}</td><td><small style="color:var(--muted)">${o.t}</small></td>
-    <td>${o.st==='run'||o.st==='q'?`<button class="btn btn-g" data-oact="pause" data-id="${o.id}">${ic('pause','sm')}توقف</button>`:o.st==='pause'?`<button class="btn btn-ok" data-oact="play" data-id="${o.id}">${ic('play','sm')}ادامه</button>`:`<button class="btn btn-g" data-oact="refill" data-id="${o.id}">${ic('shield','sm')}جبران ریزش</button>`}</td></tr>`).join(''):`<tr><td colspan="9" class="empty">سفارشی با این مشخصات پیدا نشد.</td></tr>`}
+  $('.js-orders').innerHTML=L.length?L.map((o,i)=>`<tr data-oid="${o.id}"><td><b>${String(o.id).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d])}</b></td><td><div class="who">${av(o.ch,i)}<div><b>${o.ch}</b><small>${o.type==='group'?'گروه':o.type==='view'?'پست‌های کانال':'کانال عمومی'}</small></div></div></td><td>${o.by}</td><td>${TL[o.type]}</td><td>${fa(o.qty)}</td><td>${prog(o)}</td><td>${stc(o.st)}</td><td><small style="color:var(--muted)">${o.t}</small></td>
+    <td>${o.st==='run'||o.st==='q'?`<button class="btn btn-g" data-oact="pause" data-id="${o.id}">${ic('pause','sm')}توقف</button>`:o.st==='pause'?`<button class="btn btn-ok" data-oact="play" data-id="${o.id}">${ic('play','sm')}ادامه</button>`:`<button class="btn btn-g" data-oact="info" data-id="${o.id}">${ic('eye','sm')}گزارش</button>`}</td></tr>`).join(''):`<tr><td colspan="9" class="empty">سفارشی با این مشخصات پیدا نشد.</td></tr>`}
 document.addEventListener('click',e=>{const f=e.target.closest('[data-of]');if(f){of=f.dataset.of;orders();return}
   const a=e.target.closest('[data-oact]');if(!a)return;const o=ORD.find(x=>x.id===+a.dataset.id);
-  if(a.dataset.oact==='pause'){o.st='pause';toast(`سفارش ${fd(o.id)} متوقف شد`,'pause')}else if(a.dataset.oact==='play'){o.st='run';toast(`سفارش ${fd(o.id)} دوباره فعال شد`,'play')}else{toast(`بررسی ریزش سفارش ${fd(o.id)} در صف قرار گرفت`,'shield')}
+  if(a.dataset.oact==='pause'){o.st='pause';toast(`سفارش ${fd(o.id)} متوقف شد`,'pause')}else if(a.dataset.oact==='play'){o.st='run';toast(`سفارش ${fd(o.id)} دوباره فعال شد`,'play')}else{toast(`گزارش سفارش ${fd(o.id)}: ${fa(o.qty)} ${TL[o.type]} تحویل شد`,'check')}
   orders();recent()});
 document.addEventListener('input',e=>{if(e.target.classList.contains('js-oq')){oq=e.target.value.trim();const pos=e.target.selectionStart;orders();const i=$('.js-oq');i.focus();i.setSelectionRange(pos,pos)}
   if(e.target.classList.contains('js-uq')){uq=e.target.value.trim();const pos=e.target.selectionStart;users();const i=$('.js-uq');i.focus();i.setSelectionRange(pos,pos)}});
