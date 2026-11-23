@@ -194,6 +194,23 @@ main::-webkit-scrollbar{display:none}
 .empty{text-align:center;padding:34px 16px;color:var(--muted);font-size:13.5px;line-height:2}
 .empty .big-ic{margin-bottom:8px}
 
+.deck{position:relative;margin-top:18px;padding-bottom:18px}
+.deck-sh{position:absolute;left:14px;right:14px;bottom:8px;height:60px;border-radius:24px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--sh);opacity:.75}
+.deck-sh.s2{left:30px;right:30px;bottom:0;opacity:.45}
+.focus{position:relative;z-index:1;text-align:center;padding:18px 18px 16px;border-radius:28px;transition:transform .42s cubic-bezier(.4,0,.2,1),opacity .35s}
+.focus.in{animation:cardin .5s cubic-bezier(.2,.9,.25,1.05)}
+.focus.out{transform:translateX(-115%) rotate(-8deg);opacity:0}
+@keyframes cardin{from{transform:translateY(26px) scale(.93);opacity:0}}
+.f-meta{display:flex;justify-content:space-between;align-items:center}
+.ch-av.xl{width:88px;height:88px;border-radius:30px;font-size:36px;margin:16px auto 12px;box-shadow:0 14px 30px rgba(40,40,120,.18),inset 0 -4px 0 rgba(0,0,0,.08)}
+.f-name{display:block;font-size:20px;font-weight:900;margin-bottom:2px}
+.focus .post{text-align:right}
+.f-state{margin-top:18px;min-height:56px}
+.f-state .ok-line{margin-top:0;justify-content:center;padding:17px;font-size:14.5px}
+.f-state .vwait{margin-top:8px;text-align:right}
+.f-row{display:flex;gap:8px;margin-top:10px}
+.f-row .btn{flex:1}
+.reward.big{font-size:14px;padding:7px 12px}
 .note{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.95;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:17px;padding:13px 14px;margin-top:16px}
 .note .ic{color:var(--teal);margin-top:2px}
 
@@ -531,14 +548,13 @@ home(){
   <div class="trust"><div>${ic('users')}فقط کاربر واقعی</div><div>${ic('shield')}ضمانت جبران ریزش</div><div>${ic('headset')}پشتیبانی همیشگی</div></div>`;
 },
 earn(){
-  const list=S.em===0?TASKS.filter(t=>S.cat==='همه'||t.cat===S.cat):VIEWS;
-  const body=list.length?list.map((t,i)=>S.em===0?taskCard(t,i):viewCard(t,i)).join(''):`<div class="card empty" style="margin-top:12px"><div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><b style="color:var(--text)">همه‌ی کارهای این بخش را انجام دادی!</b><br>کارهای تازه هر چند دقیقه اضافه می‌شوند.<br><button class="btn btn-s" style="margin-top:10px" data-act="refill">${ic('refresh','sm')}بارگذاری کارهای جدید</button></div>`;
-  return `<h2 class="title">سکه‌گیری</h2>
-  <div class="seg" data-i="${S.em}"><i class="thumb"></i><button class="${S.em===0?'on':''}" data-act="em" data-i="0">${ic('users','sm')}عضویت در کانال</button><button class="${S.em===1?'on':''}" data-act="em" data-i="1">${ic('eye','sm')}بازدید پست</button></div>
-  <div class="card limit"><div class="ring" style="--v:${S.done/S.limit*100}"><span class="js-done">${fa(S.done)}</span></div><div class="grow"><b>${fa(S.done)} از ${fa(S.limit)} کار امروز</b><small>سقف روزانه کیفیت اعضای کانال‌ها را بالا نگه می‌دارد و جلوی تقلب را می‌گیرد.</small></div></div>
-  ${S.em===0?`<div class="chips">${CATS.map(c=>`<button class="chip ${S.cat===c?'on':''}" data-act="cat" data-c="${c}">${c}</button>`).join('')}</div>`:''}
-  <div class="js-tasks">${body}</div>
-  <div class="note">${ic('info','sm')}<span>با زدن دکمه، کانال در اپلیکیشن رسمی ایتا باز می‌شود. بعد از عضویت برگرد و «بررسی کن» را بزن. سکه بعد از ۲۴ ساعت قطعی می‌شود و اگر از کانال خارج شوی کسر می‌شود.</span></div>`;
+  const m=S.em===0,list=m?TASKS:VIEWS,t=list[0];
+  const head=`<h2 class="title">سکه‌گیری</h2>
+  <div class="seg" data-i="${S.em}"><i class="thumb"></i><button class="${m?'on':''}" data-act="em" data-i="0">${ic('users','sm')}عضویت در کانال</button><button class="${!m?'on':''}" data-act="em" data-i="1">${ic('eye','sm')}بازدید پست</button></div>
+  <div class="card limit"><div class="ring" style="--v:${S.done/S.limit*100}"><span class="js-done">${fa(S.done)}</span></div><div class="grow"><b>${fa(S.done)} از ${fa(S.limit)} کار امروز</b><small>سقف روزانه کیفیت اعضای کانال‌ها را بالا نگه می‌دارد و جلوی تقلب را می‌گیرد.</small></div></div>`;
+  if(!t)return head+`<div class="card empty" style="margin-top:18px"><div class="big-ic" style="background:var(--ok-soft);color:var(--ok)">${ic('check','lg')}</div><b style="color:var(--text)">همه‌ی کارهای این بخش را انجام دادی!</b><br>کارهای تازه هر چند دقیقه اضافه می‌شوند.<br><button class="btn btn-s" style="margin-top:10px" data-act="refill">${ic('refresh','sm')}بارگذاری کارهای جدید</button></div>`;
+  return head+`<div class="deck">${list.length>1?'<i class="deck-sh"></i>':''}${list.length>2?'<i class="deck-sh s2"></i>':''}${focusCard(t,list.length)}</div>
+  <div class="note">${ic('zap','sm')}<span>با یک لمس، ${m?'کانال':'پست'} در اپلیکیشن رسمی ایتا باز می‌شود. وقتی برگردی، ${m?'عضویتت':'بازدیدت'} خودکار بررسی می‌شود، سکه اضافه می‌شود و ${m?'کانال':'پست'} بعدی خودش می‌آید. سکه بعد از ۲۴ ساعت قطعی می‌شود.</span></div>`;
 },
 order(){
   const m=S.om===0,min=m?50:100,max=m?5000:20000,step=m?50:100;
@@ -591,10 +607,13 @@ profile(){
     <div class="li" data-act="logout" style="color:var(--bad)">${ic('logout')}<span>خروج از حساب</span></div></div>
   <p class="sub" style="text-align:center;margin-top:16px">پیوند، نسخه‌ی ۱٫۰ (نمایشی)</p>`;
 }};
-function taskCard(t,i){return `<div class="card task" data-tid="${t.id}"><div class="task-h">${av(t.name,i)}<div class="grow meta"><b>${t.name}</b><small>${t.cat}<i class="sep"></i>${fa(t.members)} عضو</small></div><span class="reward">${plus(t.reward)}${coin('xs')}</span></div>
-  <div class="task-acts"><button class="btn btn-p grow" data-act="join" data-id="${t.id}">${ic('link','sm')}عضو شو در ایتا</button><button class="btn btn-ghost" data-act="skip" data-id="${t.id}" aria-label="رد کردن">${ic('x','sm')}</button><button class="btn btn-ghost" data-act="report" data-id="${t.id}" aria-label="گزارش">${ic('flag','sm')}</button></div></div>`}
-function viewCard(v,i){return `<div class="card task" data-vid="${v.id}"><div class="task-h">${av(v.name,i+2)}<div class="grow meta"><b>${v.name}</b><small>پست تازه<i class="sep"></i>${v.ago}</small></div><span class="reward">${plus(v.reward)}${coin('xs')}</span></div>
-  <div class="post">${v.text}</div><div class="task-acts"><button class="btn btn-p grow" data-act="view" data-id="${v.id}">${ic('eye','sm')}مشاهده‌ی پست در ایتا</button><button class="btn btn-ghost" data-act="skipv" data-id="${v.id}" aria-label="رد کردن">${ic('x','sm')}</button></div></div>`}
+function focusCard(t,n){const m=S.em===0;return `<div class="card focus in" data-fid="${t.id}">
+  <div class="f-meta"><span class="sub">${fa(n)} ${m?'کانال':'پست'} در صف</span><span class="reward big">${plus(t.reward)}${coin('xs')}</span></div>
+  ${av(t.name,t.id,'xl')}<b class="f-name">${t.name}</b><small class="sub">${m?fa(t.members)+' عضو':'پست تازه<i class="sep"></i>'+t.ago}</small>
+  ${m?'':`<div class="post">${t.text}</div>`}
+  <div class="f-state"><button class="btn btn-p big w100" data-act="fjoin" data-id="${t.id}">${ic(m?'link':'eye','sm')}${m?'عضو شو و سکه بگیر':'ببین و سکه بگیر'}</button></div>
+  <div class="f-row"><button class="btn btn-ghost" data-act="fnext">${ic('chev','sm')}بعدی</button>${m?`<button class="btn btn-ghost" data-act="report" data-id="${t.id}">${ic('flag','sm')}گزارش</button>`:''}</div></div>`}
+function advance(){const c=$('.focus');if(!c){rerender();return}c.classList.remove('in');c.classList.add('out');setTimeout(()=>{if(cur==='earn')rerender()},380)}
 
 /* ---------- order helpers ---------- */
 function parseLink(v,member){v=v.trim();const m=v.match(/^(?:https?:\/\/)?(?:www\.)?eitaa\.com\/([A-Za-z][A-Za-z0-9_]{3,31})(?:\/(\d+))?\/?$/)||v.match(/^@([A-Za-z][A-Za-z0-9_]{3,31})$/);
@@ -625,28 +644,23 @@ const A={
   em:el=>{S.em=+el.dataset.i;rerender()},
   om:el=>{S.om=+el.dataset.i;S.qty=S.om===0?500:1000;S.link='';S.posts=1;rerender()},
   cat:el=>{S.cat=el.dataset.c;rerender()},
-  join(el){const id=el.dataset.id,acts=el.closest('.task-acts');acts.innerHTML=`<button class="btn btn-s grow" disabled><span class="spin"></span>در حال باز کردن ایتا…</button>`;
-    setTimeout(()=>{acts.innerHTML=`<button class="btn btn-ok grow" data-act="verify" data-id="${id}">${ic('check','sm')}عضو شدم، بررسی کن</button><button class="btn btn-ghost" data-act="join" data-id="${id}" aria-label="باز کردن دوباره">${ic('refresh','sm')}</button>`;toast('کانال در ایتا باز شد؛ بعد از عضویت برگرد','link')},1000)},
-  verify(el){const id=+el.dataset.id,t=TASKS.find(x=>x.id===id),card=el.closest('.task'),acts=el.closest('.task-acts');
-    acts.innerHTML=`<button class="btn btn-s grow" disabled><span class="spin"></span>در حال بررسی عضویت…</button>`;
-    setTimeout(()=>{acts.outerHTML=`<div class="ok-line">${ic('check','sm')}عضویت تأیید شد؛ ${fa(t.reward)} سکه اضافه شد</div>`;const ok=card.querySelector('.ok-line');
-      fly(ok,4,()=>{setCoins(t.reward);S.pending+=t.reward});S.earned+=t.reward;done1();addHist(`عضویت در «${t.name}»`,t.reward,'earn');
-      TASKS=TASKS.filter(x=>x.id!==id);setTimeout(()=>collapse(card,afterTask),1500)},1300)},
-  skip(el){const id=+el.dataset.id;TASKS=TASKS.filter(x=>x.id!==id);collapse(el.closest('.task'),afterTask);toast('این کانال دیگر نمایش داده نمی‌شود','x')},
-  skipv(el){const id=+el.dataset.id;VIEWS=VIEWS.filter(x=>x.id!==id);collapse(el.closest('.task'),afterTask)},
-  view(el){const id=+el.dataset.id,v=VIEWS.find(x=>x.id===id),card=el.closest('.task'),acts=el.closest('.task-acts');
-    acts.outerHTML=`<div class="vwait"><div class="bar"><i></i></div><small><span class="spin"></span>پست در ایتا باز شد، در حال ثبت بازدید…</small></div>`;
-    const bar=card.querySelector('.vwait .bar i');bar.style.transition=`width ${v.secs}s linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width='100%'));
-    setTimeout(()=>{card.querySelector('.vwait').outerHTML=`<div class="ok-line">${ic('check','sm')}بازدید ثبت شد؛ ${fa(v.reward)} سکه اضافه شد</div>`;
-      fly(card.querySelector('.ok-line'),2,()=>{setCoins(v.reward);S.pending+=v.reward});done1();addHist(`بازدید پست «${v.name}»`,v.reward,'earn');
-      VIEWS=VIEWS.filter(x=>x.id!==id);setTimeout(()=>collapse(card,afterTask),1400)},v.secs*1000+100)},
+  fjoin(el){const m=S.em===0,id=+el.dataset.id,t=(m?TASKS:VIEWS).find(x=>x.id===id),st=el.closest('.f-state');
+    document.querySelectorAll('.f-row .btn').forEach(b=>b.disabled=true);
+    const set=h=>st.innerHTML=h,wait=txt=>`<button class="btn btn-s big w100" disabled><span class="spin"></span>${txt}</button>`;
+    set(wait('در حال باز کردن ایتا…'));
+    const finish=()=>{set(`<div class="ok-line">${ic('check','sm')}${m?'عضویت':'بازدید'} تأیید شد؛ ${plus(t.reward)} سکه</div>`);
+      fly(st,m?4:2,()=>{setCoins(t.reward);S.pending+=t.reward});S.earned+=t.reward;done1();addHist(m?`عضویت در «${t.name}»`:`بازدید پست «${t.name}»`,t.reward,'earn');
+      if(m)TASKS=TASKS.filter(x=>x.id!==id);else VIEWS=VIEWS.filter(x=>x.id!==id);setTimeout(advance,1000)};
+    setTimeout(()=>{if(m){set(wait('در ایتا عضو شو و برگرد…'));setTimeout(()=>{set(wait('در حال بررسی خودکار عضویت…'));setTimeout(finish,900)},1300)}
+      else{set(`<div class="vwait"><div class="bar"><i></i></div><small><span class="spin"></span>در حال ثبت بازدید…</small></div>`);const bar=st.querySelector('.bar i');bar.style.transition=`width ${t.secs}s linear`;requestAnimationFrame(()=>requestAnimationFrame(()=>bar.style.width='100%'));setTimeout(finish,t.secs*1000+100)}},900)},
+  fnext(){if(S.em===0){TASKS.push(TASKS.shift())}else{VIEWS.push(VIEWS.shift())}advance()},
   report(el){const t=TASKS.find(x=>x.id===+el.dataset.id);openSheet(`<div class="big-ic" style="background:var(--bad-soft);color:var(--bad)">${ic('flag','lg')}</div><h4>گزارش کانال «${t.name}»</h4><p class="c">مشکل این کانال چیست؟ گزارش شما بدون نام بررسی می‌شود.</p>
     ${['محتوای نامناسب یا غیرقانونی','کانال جعلی یا کلاهبرداری','لینک خراب است یا کانال خصوصی است','دلیل دیگر'].map((r,i)=>`<div class="opt ${i===0?'on':''}" data-act="pick"><i class="rd"></i><div class="grow"><b>${r}</b></div></div>`).join('')}
     <div class="acts"><button class="btn btn-ghost" data-act="close">انصراف</button><button class="btn btn-dark" data-act="sendreport" data-id="${t.id}">ارسال گزارش</button></div>`)},
   pick(el){el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.toggle('on',o===el));if(el.dataset.pay!==undefined){S.pay=+el.dataset.pay}},
-  sendreport(el){closeSheet();const id=+el.dataset.id;TASKS=TASKS.filter(x=>x.id!==id);const c=$(`[data-tid="${id}"]`);c&&collapse(c,afterTask);toast('گزارش ثبت شد؛ ممنون از همراهی‌ات','flag')},
+  sendreport(el){closeSheet();const id=+el.dataset.id;TASKS=TASKS.filter(x=>x.id!==id);advance();toast('گزارش ثبت شد؛ ممنون از همراهی‌ات','flag')},
   refill(){TASKS=[{id:21,name:'عکاسی با موبایل',cat:'آموزشی',members:11200,reward:5},{id:22,name:'خبر فوری',cat:'خبری',members:61800,reward:4},{id:23,name:'گل و گیاه آپارتمانی',cat:'سبک زندگی',members:8700,reward:6},{id:24,name:'پوشاک زمستانه',cat:'فروشگاهی',members:19300,reward:4}];
-    VIEWS=[{id:121,name:'خبر فوری',ago:'۳ دقیقه پیش',text:'پیش‌بینی هوای آخر هفته: بارش برف در استان‌های شمال غربی و کاهش دما در تهران.',reward:1,secs:5},{id:122,name:'عکاسی با موبایل',ago:'۱۵ دقیقه پیش',text:'سه تنظیم ساده‌ی دوربین گوشی که عکس‌های شب را چند برابر بهتر می‌کند.',reward:1,secs:5}];S.cat='همه';rerender();toast('کارهای تازه بارگذاری شد','refresh')},
+    VIEWS=[{id:121,name:'خبر فوری',ago:'۳ دقیقه پیش',text:'پیش‌بینی هوای آخر هفته: بارش برف در استان‌های شمال غربی و کاهش دما در تهران.',reward:1,secs:5},{id:122,name:'عکاسی با موبایل',ago:'۱۵ دقیقه پیش',text:'سه تنظیم ساده‌ی دوربین گوشی که عکس‌های شب را چند برابر بهتر می‌کند.',reward:1,secs:5}];rerender();toast('کارهای تازه بارگذاری شد','refresh')},
   preset(el){S.qty=+el.dataset.v;rerender()},
   posts(el){S.posts=+el.dataset.v;rerender()},
   submit(el){const m=S.om===0,p=parseLink(S.link,m),inp=$('.js-inp');
